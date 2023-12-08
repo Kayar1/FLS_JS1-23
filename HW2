@@ -1,0 +1,17 @@
+const hoursPerDay = 24;
+const minutesPerHour = 60;
+const secondsPerMinute = 60;
+let days = 7;
+let hours = days * hoursPerDay;
+let minutes = hours * minutesPerHour;
+let seconds = minutes * secondsPerMinute;
+console.log(`У ${days} днях - ${hours} годин, ${minutes} хвилин або ${seconds} секунд.`);
+
+days = 25;
+hours = days * hoursPerDay;
+minutes = hours * minutesPerHour;
+seconds = minutes * secondsPerMinute;
+console.log(`У ${days} днях - ${hours} годин, ${minutes} хвилин або ${seconds} секунд.`);
+
+//У 7 днях - 168 годин, 10080 [хвилин] або 604800 секунд.
+//У 25 днях - 600 годин, 36000 хвилин або 2160000 секунд.
