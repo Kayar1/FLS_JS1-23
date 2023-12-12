@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>get place</title>
+</head>
+
+<body>
+    
+        <input type="place number" name="newplace" />
+        <br />
+        <br />
+        <button type="button" onclick="getCupe()"> Расчет</button>
+        <button type="button" onclick="getCupe(1)"> Случайное</button>
+        <br />
+        <br />
+        <h1 id="resultinfo">Place in cupe</h1>
+    
+    <script>
+
+        function getCupe(onlyrandom = 0) {
+
+            const maxPlaceInVagon_Cupe = 36;
+            const maxPlaceInVagon_Side = 16;
+            const maxPlaceInCupe = 4;
+            const maxPlaceInSide = 2;
+
+            let currentPlace = 0;
+
+            currentPlaceInput = parseInt(document.getElementsByName("newplace")[0].value);
+            console.log(typeof(currentPlaceInput));
+
+            if ((onlyrandom === 0)&&(currentPlaceInput >= 1 && currentPlaceInput <= (maxPlaceInVagon_Cupe + maxPlaceInVagon_Side))) {
+                currentPlace = currentPlaceInput;
+                console.log(onlyrandom);
+            } else {
+                currentPlace = Math.floor(Math.random() * (maxPlaceInVagon_Cupe + maxPlaceInVagon_Side) + 1);
+            }
+
+            console.log(currentPlace);
+
+            let currentCupe = 0;
+
+            if (currentPlace > maxPlaceInVagon_Cupe) {
+                const maxCupeCount = Math.trunc(maxPlaceInVagon_Cupe / maxPlaceInCupe);
+                const currentPlaceTemp = currentPlace - maxPlaceInVagon_Cupe;
+                const currentCupeTemp = Math.trunc(currentPlaceTemp / maxPlaceInSide);
+                currentCupe = maxCupeCount + 1 - ((currentPlaceTemp % maxPlaceInSide) === 0 ? currentCupeTemp : (currentCupeTemp + 1));
+            } else {
+                const currentCupeTemp = Math.trunc(currentPlace / maxPlaceInCupe);
+                currentCupe = currentPlace % maxPlaceInCupe === 0 ? currentCupeTemp : (currentCupeTemp + 1);
+            }
+
+            console.log(` Place ${currentPlace} is in ${currentCupe} cupe!`);
+
+            const resultInfo = document.getElementById('resultinfo');
+            resultInfo.innerHTML = ` Place ${currentPlace} is in ${currentCupe} cupe!`;
+
+        }
+    </script>
+</body>
+
+</html>
