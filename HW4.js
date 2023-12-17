@@ -192,65 +192,57 @@ for (i = 1; i <= currentSymbolCount; i++) {
 
 
 //Task Alfa
-
-
 const maxCardNumber = 54;
 const minCardNumber = 2;
 const maxCardType = 4;
-
-for (card = minCardNumber; card <= Math.trunc(maxCardNumber / maxCardType) + 1 ; card++) {
-    let cardName = '';
-    switch (card) {
-        case 11: cardName = 'J'; break;
-        case 12: cardName = 'Q'; break;
-        case 13: cardName = 'K'; break;
-        case 14: cardName = 'A'; break;
-        default: cardName = card.toString();
-    }
-
-    cardName = cardName.padStart(2, ' ');
-    let cardString = '';
-
-    //♣️♦️♥️♠️
-    let cardType;
-
-    for (cardtypeNumber = 1; cardtypeNumber <= maxCardType; cardtypeNumber++) {
-        switch (cardtypeNumber) {
-            case 1: cardType = '♣️'; break;
-            case 2: cardType = '♠️'; break;
-            case 3: cardType = '♦️'; break;
-            case 4: cardType = '♣️'; break;
+const maxPicture = 13;
+const EOL1 = '\n';
+let cardString = '';
+for (i = 0; i < maxCardNumber; i++) {
+    if (i < maxPicture * maxCardType) {
+        let cardType = '';
+        switch (i % maxCardType) {
+            case 0: cardType = '♣️'; cardString += EOL1; break;
+            case 1: cardType = '♠️'; break;
+            case 2: cardType = '♦️'; break;
+            case 3: cardType = '♥️'; break;
             default: cardType = '';
         }
 
-        cardString += `${cardName}${cardType}      `;
+        const card = minCardNumber + Math.trunc(i / maxCardType);
 
+        let cardName = '';
+        switch (card) {
+            case 11: cardName = 'J'; break;
+            case 12: cardName = 'Q'; break;
+            case 13: cardName = 'K'; break;
+            case 14: cardName = 'A'; break;
+            default: cardName = card.toString();
+        }
+
+        cardString += `${cardName.padStart(2,' ')}${cardType}      `;
+    }else{
+        cardString += EOL1 + `JOKER${maxCardNumber - i}      `;
     }
-    console.log(cardString);
 }
 
-let cardString = '';
-const maxJOKERCount = maxCardNumber - Math.trunc(maxCardNumber / maxCardType) * maxCardType; 
-console.log(maxJOKERCount);
-for (i = 1;i <= maxJOKERCount;i++){
-    cardString += `JOKER${i}      `;
-}
 console.log(cardString);
 
-// 2♣️       2♠️       2♦️       2♣️      
-// 3♣️       3♠️       3♦️       3♣️      
-// 4♣️       4♠️       4♦️       4♣️      
-// 5♣️       5♠️       5♦️       5♣️      
-// 6♣️       6♠️       6♦️       6♣️      
-// 7♣️       7♠️       7♦️       7♣️      
-// 8♣️       8♠️       8♦️       8♣️      
-// 9♣️       9♠️       9♦️       9♣️      
-//10♣️      10♠️      10♦️      10♣️      
-// J♣️       J♠️       J♦️       J♣️      
-// Q♣️       Q♠️       Q♦️       Q♣️      
-// K♣️       K♠️       K♦️       K♣️      
-// A♣️       A♠️       A♦️       A♣️  
-//JOKER1    JOKER2
+// 2♣️       2♠️       2♦️       2♥️      
+// 3♣️       3♠️       3♦️       3♥️      
+// 4♣️       4♠️       4♦️       4♥️      
+// 5♣️       5♠️       5♦️       5♥️      
+// 6♣️       6♠️       6♦️       6♥️      
+// 7♣️       7♠️       7♦️       7♥️      
+// 8♣️       8♠️       8♦️       8♥️      
+// 9♣️       9♠️       9♦️       9♥️      
+//10♣️      10♠️      10♦️      10♥️      
+// J♣️       J♠️       J♦️       J♥️      
+// Q♣️       Q♠️       Q♦️       Q♥️      
+// K♣️       K♠️       K♦️       K♥️      
+// A♣️       A♠️       A♦️       A♥️      
+//JOKER2      
+//JOKER1      
 
 //Task Bravo
 
