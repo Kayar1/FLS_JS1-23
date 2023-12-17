@@ -194,11 +194,11 @@ for (i = 1; i <= currentSymbolCount; i++) {
 //Task Alfa
 
 
-const maxCardNumber = 14;
+const maxCardNumber = 54;
 const minCardNumber = 2;
 const maxCardType = 4;
 
-for (card = minCardNumber; card <= maxCardNumber; card++) {
+for (card = minCardNumber; card <= Math.trunc(maxCardNumber / maxCardType) + 1 ; card++) {
     let cardName = '';
     switch (card) {
         case 11: cardName = 'J'; break;
@@ -229,6 +229,14 @@ for (card = minCardNumber; card <= maxCardNumber; card++) {
     console.log(cardString);
 }
 
+let cardString = '';
+const maxJOKERCount = maxCardNumber - Math.trunc(maxCardNumber / maxCardType) * maxCardType; 
+console.log(maxJOKERCount);
+for (i = 1;i <= maxJOKERCount;i++){
+    cardString += `JOKER${i}      `;
+}
+console.log(cardString);
+
 // 2♣️       2♠️       2♦️       2♣️      
 // 3♣️       3♠️       3♦️       3♣️      
 // 4♣️       4♠️       4♦️       4♣️      
@@ -242,7 +250,7 @@ for (card = minCardNumber; card <= maxCardNumber; card++) {
 // Q♣️       Q♠️       Q♦️       Q♣️      
 // K♣️       K♠️       K♦️       K♣️      
 // A♣️       A♠️       A♦️       A♣️  
-
+//JOKER1    JOKER2
 
 //Task Bravo
 
