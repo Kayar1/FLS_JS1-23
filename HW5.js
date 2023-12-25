@@ -19,6 +19,11 @@
     console.log(calc(12, 5, '/', 1).toFixed(1));
     console.log(calc(1.2, 3, '*', 1).toFixed(1));
 
+//16
+//-3
+//2.4
+//3.6
+
 }
 
 // Task 2
@@ -38,6 +43,10 @@
 
     console.log(convertCtoF(36));
     console.log(convertFtoC(96.8));
+    
+    //96.8
+    //36
+
 }
 
 //Task 3
@@ -76,6 +85,15 @@
     console.log(convertHEXtoRGB(0x112233));
     console.log(convertHEXtoRGB('#112233'));
 
+//RGB (17, 34, 51) = HEX #112233
+//RGB (243, 228, 160) = HEX #f3e4a0
+//RGB (1, 1, 1) = HEX #010101
+//HEX 010101 = RGB(1, 1, 1)
+//HEX f3e4a0 = RGB(243, 228, 160)
+//HEX 112233 = RGB(17, 34, 51)
+//HEX #112233 = RGB(17, 34, 51)
+
+
 }
 
 //Tasks 4
@@ -104,8 +122,11 @@
         return res;
     }
 
-    console.log(DNA('ATTGC'));
-    console.log(DNA('GTAT'));
+    console.log(`ATTGC -> ${DNA('ATTGC')}`);
+    console.log(`GTAT -> ${DNA('GTAT')}`);
+
+    //ATTGC -> TAACG
+    //GTAT -> CATA
 }
 
 
@@ -119,11 +140,11 @@
     const minTimeOutMoney = 20;
     const maxVariant = 500;
 
-    const plusMoney = (newLineCount = 0) => (newLineCount % minLineCountToPay) === 0  ? minLineCountMoney : 0;
-    const getMinus = (timeCount = 0) =>  Math.trunc(timeCount / minTimeOutForMinus) * minTimeOutMoney;
+    const plusMoney = (newLineCount = 0) => (newLineCount % minLineCountToPay) === 0 ? minLineCountMoney : 0;
+    const getMinus = (timeCount = 0) => Math.trunc(timeCount / minTimeOutForMinus) * minTimeOutMoney;
     const getOutVariant = () => (Math.floor(Math.random() * maxVariant) % minLineCountToPay) === 0 ? 1 : 0;
-    const getLineCount = (newMoney = 0) =>  Math.trunc(newMoney / minLineCountMoney * minLineCountToPay);
-    const getOutCount = (outMoney = 0) =>  Math.trunc(outMoney / minTimeOutMoney * minTimeOutForMinus);
+    const getLineCount = (newMoney = 0) => Math.trunc(newMoney / minLineCountMoney * minLineCountToPay);
+    const getOutCount = (outMoney = 0) => Math.trunc(outMoney / minTimeOutMoney * minTimeOutForMinus);
 
     let moneyPlus = 0;
     let moneyMinus = 0;
@@ -154,13 +175,13 @@
 
     const moneyMAX2 = plusMoney(lineCount2);
     const outMoney2 = moneyMAX2 - Money2;
-    const outCount2 = getOutCount(outMoney2);      
-    
+    const outCount2 = getOutCount(outMoney2);
+
     console.log(`Money = ${Money2}, outCount =${outCount2}, outMoney = ${outMoney2}, lineMoney = ${moneyMAX2}, lineCount = ${lineCount2}`);
 
     const lineCount3 = 6250;
     const outCount3 = 22;
-    
+
     const lineMoney3 = plusMoney(lineCount3);
     const outMoney3 = getMinus(outCount3);
     const Money3 = lineCount3 - outMoney3;
@@ -173,10 +194,10 @@
 //Task Bravo
 
 {
-    const isHappyTicket = (num = 100000) => {
+    const isHappyTicket1 = (num = 100000) => {
         let firstP = 0;
         let secondP = 1;
-        if (num >= 100000 & num <= 999999) {
+        if (num >= 100000 & num <= 999999) {  //is no correct
             secondP = 0;
             let n = num;
             for (let i = 6; i > 0; i--) {
@@ -188,15 +209,27 @@
 
         return firstP === secondP;
     }
+    
+    
+    
+    const isHappyTicket = (num = 100000) => {
+        const str = `${num}`.padStart(6, '0');
+        const firstP = parseInt(str[0]) + parseInt(str[1]) + parseInt(str[2]);
+        const secondP = parseInt(str[3]) + parseInt(str[4]) + parseInt(str[5]);
+        return firstP === secondP;
+    }
+    
 
-function getInfo(num){
-    console.log(`${num} - ${isHappyTicket(num)}`);
-}
+    function getInfo(num) {
+        console.log(`${num.toString().padStart(6, '0')} - ${isHappyTicket(num)}`);
+        console.log(`${num.toString().padStart(6, '0')} - ${isHappyTicket1(num)}`);
+    }
 
     getInfo(123321);
     getInfo(111111);
     getInfo(547263);
     getInfo(254);
     getInfo(25343456);
+    getInfo(1100);
 
 }
