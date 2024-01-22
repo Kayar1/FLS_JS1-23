@@ -1,5 +1,5 @@
  
-//Task1
+console.log('Task1');
 
 const myAt = (str = '', index = 0) => str.slice(index)[0];
 
@@ -10,7 +10,7 @@ console.log(myAt("hello", -1)); // повертає o
 
 
 
-//Task2
+console.log('Task2');
 
  
 const myConcat = function(){
@@ -21,14 +21,14 @@ const myConcat = function(){
  console.log(myConcat("a", "b", "c", "d")); // повертає "abcd"
  console.log(myConcat("")); // повертає ""
 
- //Task 3
+ console.log('Task3');
 const myRepeat = (str, count) => count ===0 ? '': str + myRepeat(str,count - 1);
 
  console.log(myRepeat("abc", 3));// повертає "abcabcabc"
  console.log(myRepeat("x", 0)); // повертає ""
 
 
- //Task4
+ console.log('Task4');
 
 const calcWordLength = (str) => {
     let minlen=str.length;
@@ -42,7 +42,7 @@ console.log(calcWordLength("lets talk about javascript the best language")); // 
 console.log(calcWordLength("i want to travel the world writing code one day")); //  --> 1
 console.log(calcWordLength("Lets all go on holiday somewhere very cold")); //  --> 2
 
-//Task5
+console.log('Task5');
 
 /**
  * @param {string} sentence
@@ -64,7 +64,7 @@ const checkIfPangram = function(sentence) {
 console.log(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"));
 console.log(checkIfPangram("leetcode"));
     
-// Task A
+console.log('Task6');
 /**
  * @param {string} word
  * @return {boolean}
@@ -79,8 +79,7 @@ console.log(equalFrequency("aazz"));
 console.log(equalFrequency("bac")); 
 console.log(equalFrequency("cccaa"));  
 
-
-//Task B
+console.log('Task7');
 /**
  * @param {string} key
  * @param {string} message
