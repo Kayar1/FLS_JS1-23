@@ -99,26 +99,16 @@ const zgraya3 = [{heads : [1,1,1]},{heads : [1,1,1]},{heads : [1,1,1]}];
 
 
 const getForce = function(zgraya = []){
-    let res = 0;
+    let res = zgraya.length < 3 ? 0 : 1;
 
-    if (zgraya.length < 3){
-        zgraya.forEach(element => {
-            let sum = 0;
-            element.heads.forEach(element1 => sum += element1);
-            res += sum;
-        }); 
-    }else{
-        res = 1;
-        zgraya.forEach(element => {
-            let sum = 0;
-            element.heads.forEach(element1 => sum += element1);
-            res *= sum;
-        }); 
-    }
+    zgraya.forEach(element => {
+        let sum = 0;
+        element.heads.forEach(element1 => sum += element1);
+        res = zgraya.length < 3 ? res + sum : res * sum;
+    }); 
 
     return res;
 }
-
 
 console.log(getForce(zgraya1));
 console.log(getForce(zgraya2));
