@@ -177,9 +177,9 @@ console.log(getForce(zgraya3));
 
 console.log('TaskA - 2');
 
-let findingRes = [];
+let findingRes = [];  // результат пошуку варіантів згай
 
-const findRes = function (fr = []) {
+const findRes = function (fr = []) {  //пощук поточної зграї в рішенях, усі сортуются спочатку, потім перевіряются на кількість та вміст
     fr.sort((a, b) => a - b);
     let finded = false;
     if (findingRes.length > 0) {
@@ -201,38 +201,39 @@ const findRes = function (fr = []) {
     return finded;
 }
 
-const getForce = function(tempZgraya = []){
+const getForce = function(tempZgraya = []){   // розрахунок силі зграї по умовам <3+ >=3*
     const res = tempZgraya.length < 3 ? tempZgraya.reduce((prev, current) => prev += current) : tempZgraya.reduce((prev, current) => prev *= current);
     return res;
 }
 
 const getNextHead = function (tempZgraya = [], headsCount = 1, heads = 1, dragon = 1) {
-    while (tempZgraya.length < dragon) tempZgraya.push(1);
-    for (let i = 1; i <= headsCount; i++) {
+    while (tempZgraya.length < dragon) tempZgraya.push(1); //якщо в масиві драконів меньше чім треба то +1
+    for (let i = 1; i <= headsCount; i++) {  //перебор для поточного дракону кількість голів
         if (dragon < heads) {
-            getNextHead(Array.from(tempZgraya), i, heads, dragon + 1);
+            getNextHead(Array.from(tempZgraya), i, heads, dragon + 1); //копя масиву драконів / кількість драконів в зграї / кількість голів /  наступний дракон
         }
-        let res = tempZgraya.reduce((prev, current) => prev += current);
-        if (res > heads) break;
-        if (res === heads) findRes(tempZgraya) 
-        tempZgraya[dragon - 1]++;
+        let res = tempZgraya.reduce((prev, current) => prev += current); //сума голів в зграї
+        if (res > heads) break;  // якщо перебор то вихід
+        if (res === heads) findRes(tempZgraya) // якщо щібрали голови то добавляємо рішення
+        tempZgraya[dragon - 1]++; //плюс голова к поточному дракону
     }
 }
 
 const findZgraya = function (heads = 1) {
-    for (let i = 1; i <= heads; i++) { //dragon count
+    for (let i = 1; i <= heads; i++) { //  для кажноговарыанту уылькості драконів у зграї - мін = 1, макс = heads
         let tempZgraya = [1];        
-        getNextHead(Array.from(tempZgraya), i, heads, 1);
+        getNextHead(Array.from(tempZgraya), i, heads, 1); //копя масиву драконів / кількість драконів в зграї / кількість голів /  поточний дракон
     }
 }
 
 const printZgraya = function(){
-    findingRes.sort((a, b) => a.length - b.length);
-    for (let i=0;i<findingRes.length;i++){
-       console.log(`${findingRes[i]} = ${getForce(findingRes[i])}`);
+    findingRes.sort((a, b) => a.length - b.length); // Сортування масиву зграй по кількості дпаконов в зграї
+    console.log(`Heads = ${heads}`);
+    for (let i=0;i<findingRes.length;i++){   
+       console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${getForce(findingRes[i])}`);
     }
 }
 
 const heads = 11;
-findZgraya(heads);
-printZgraya();
+findZgraya(heads); //пошук
+printZgraya();      // вивод
