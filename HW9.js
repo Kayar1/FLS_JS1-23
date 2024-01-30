@@ -1,5 +1,5 @@
 console.log("Task 1 - 1");
-
+// словарі 
 const languages = ['classic', 'england', 'franch', 'russian'];
 const dictionaryModel = [
     { key: 11, value: ' J B V В' },
@@ -13,11 +13,11 @@ const maxCardNumber = 54;
 const minCardNumber = 2;
 const maxPicture = 13;
 
-const getModel = function (lang = 0, m = 0) {
+const getModel = function (lang = 0, m = 0) { //формуванні об'екту карти
     let res = '';
     if (m <= 10) res = m.toString().padStart(2, ' ');
     else if (m === 15) res = 'JOKER';
-    else res = dictionaryModel.find(el => el.key === m).value.substring(lang * 2, lang * 2 + 2);
+    else res = dictionaryModel.find(el => el.key === m).value.substring(lang * 2, lang * 2 + 2); 
     return res;
 }
 
@@ -34,7 +34,7 @@ const addCard = function (lang, m1, m2) {
     return res;
 };
 
-const getKoloda = function (lang = 0) {
+const getKoloda = function (lang = 0) {  //формування колоди
     let res = [maxCardNumber];
 
     for (i = 0; i < maxCardNumber; i++) {
