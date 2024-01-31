@@ -119,14 +119,14 @@ const printZgraya = function(){
     console.log(`Heads = ${heads}`);
     let maxForce = [];
     for (let i=0;i<findingRes.length;i++){   
-        maxForce[i] = getForce(findingRes[i]);
-       console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${maxForce[i]}`);
+        maxForce.push([getForce(findingRes[i]),i]);
+       console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${maxForce[i][0]}`);
     }
     
     //расчет максимального
-    const maxElem = Math.max(...maxForce);
+    const maxElem = maxForce.reduce((a, b) => a > b[0] ? a : b[0], 0);
     console.log(`MaxForce = ${maxElem}`);
-    maxForce.filter(el => el === maxElem).forEach((el,i) => console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${el}`))
+    maxForce.filter(el => el[0] === maxElem).forEach((el,i) => console.log(`Dragons = ${findingRes[el[1]].length} : ${findingRes[el[1]]}, Force = ${el[0]}`));
 }
 
 const heads = 11;
