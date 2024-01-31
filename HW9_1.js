@@ -117,9 +117,16 @@ const findZgraya = function (heads = 1) {
 const printZgraya = function(){
     findingRes.sort((a, b) => a.length - b.length); // Сортування масиву зграй по кількості дпаконов в зграї
     console.log(`Heads = ${heads}`);
+    let maxForce = [];
     for (let i=0;i<findingRes.length;i++){   
-       console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${getForce(findingRes[i])}`);
+        maxForce[i] = getForce(findingRes[i]);
+       console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${maxForce[i]}`);
     }
+    
+    //расчет максимального
+    const maxElem = Math.max(...maxForce);
+    console.log(`MaxForce = ${maxElem}`);
+    maxForce.filter(el => el === maxElem).forEach((el,i) => console.log(`Dragons = ${findingRes[i].length} : ${findingRes[i]}, Force = ${el}`))
 }
 
 const heads = 11;
