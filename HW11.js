@@ -46,13 +46,21 @@ console.log('myEvery -t ',[1,2,3,4,5,6,7,8,9,0].myEvery(n => n > -1));
 
 console.log('Task 5');
 
-
 Array.prototype.myFilterIndex = function(callback){
     const res=[];
-    for (i=0;i<this.length;i++){
+    for (let i=0;i<this.length;i++){
         if (callback(this[i], i, this)) res.push(i);
     }
     return res;
+}
+
+String.prototype.myIsPresent = function(ch = ''){
+    if (typeof(ch) === 'string'||typeof(ch) === 'char'){
+        for (let i=0;i<this.length;i++){
+            if (this.slice(i,i+ch.length)===ch) return true;
+        }
+    }
+    return false;
 }
 /**
  * @param {string[]} words
@@ -60,7 +68,7 @@ Array.prototype.myFilterIndex = function(callback){
  * @return {number[]}
  */
 const findWordsContaining = function(words, x) {
-    return words.myFilterIndex(el => el.indexOf(x)>-1); 
+    return words.myFilterIndex(el => el.myIsPresent(x)); 
 };
 
 console.log(findWordsContaining(["leet","code"],"e"));
