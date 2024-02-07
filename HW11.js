@@ -55,10 +55,8 @@ Array.prototype.myFilterIndex = function(callback){
 }
 
 String.prototype.myIsPresent = function(ch = ''){
-    if (typeof(ch) === 'string'||typeof(ch) === 'char'){
-        for (let i=0;i<this.length;i++){
-            if (this.slice(i,i+ch.length)===ch) return true;
-        }
+    for (let i=0;i<this.length;i++){
+        if (this.slice(i,i+ch.length)===ch) return true;
     }
     return false;
 }
