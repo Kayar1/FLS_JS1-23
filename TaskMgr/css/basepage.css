@@ -1,0 +1,102 @@
+.basepageregisterrow {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    text-align: center;
+  }
+  .basepagecol,
+  [class*='col-'] {
+    flex-grow: 1;  
+  }  
+.basepagecol-6 {
+    flex: 0 0 150px;
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+  }
+  .basepagelogobox{
+    height: 5em;
+    margin: 0;
+    padding: 0;
+    border: none;  
+  }
+  .basepagelogo{  
+    margin-top: 1em;
+  }
+  .basepagebuttonbox{
+    height: calc(100vh - 5em);
+    margin: 0;
+    padding: 0;
+    border: none;  
+    display: flex;
+    text-align: center;
+  }
+  .basepagenavui{
+    border: none;
+    width: 80%;
+    height: calc((100vh - 5em));
+    list-style-type: none;
+    vertical-align: bottom;
+    align-items: flex-end;
+  }
+  .basepagenavui li{
+    margin: 10px;
+    background-color: lightcyan;
+    height: calc((100vh - 5em) / 7);
+  }
+  .basepagemainheight{
+    height: calc(100vh - 3em);
+  }
+  .basepagenav{
+    height: 3em;
+  }
+  .basepagewrap{
+    display: flex;    
+    height: calc(100vh - 3em - 3em);
+  }
+  .basepageverticalmenu{        
+    flex: 0 0 auto;
+    width: 20%;    
+    overflow: auto;
+    color : blue;
+  }
+  .verticalmenurow{
+    color : magenta;
+    font-weight: bold;
+  }
+  .basepagetabpage{
+    flex: 0 0 auto;
+    width: 80%;    
+    color:blue;
+    overflow: auto;
+    padding: 10px;
+  }
+
+  .basepagetable caption{
+    caption-side: top;
+    color:brown;
+    font-weight: bold;
+  }
+
+  .basepagetable thead{
+    color:black;
+    border: 1px solid brown;
+    font-weight: bold;
+  }
+
+  .basepagetable th{
+    color:black;
+    border: 1px solid brown;
+    font-weight: bold;
+  }
+
+  .basepagetable tbody{
+    color:blue;
+    border: 1px solid brown;
+  }
+  
+  .basepagetable td{
+    color:blue;
+    border: 1px solid brown;
+  }

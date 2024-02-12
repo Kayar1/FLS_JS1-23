@@ -26,16 +26,7 @@ const femaleNames = getNames();
 const getObject = function(gend = 'male'){
     const maxAge = 90;
     const res = {name:'', age : 0, gender: gend};
-    switch(gend){
-        case 'female': {
-            res.name = femaleNames[Math.floor(Math.random() * femaleNames.length)];
-            break;
-            }
-        default: {
-            res.name = maleNames[Math.floor(Math.random() * maleNames.length)];
-            break;
-            }
-    }
+    res.name = gend === 'female' ? femaleNames[Math.floor(Math.random() * femaleNames.length)] : maleNames[Math.floor(Math.random() * maleNames.length)];
     res.age = Math.floor(Math.random() * maxAge );
     return res;
 }

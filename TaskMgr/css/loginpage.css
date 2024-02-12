@@ -1,0 +1,96 @@
+/* Loginpage */
+.loginpageregisterrow {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    text-align: center;
+  }
+  .loginpagecol,
+  [class*='col-'] {
+    flex-grow: 1;  
+  }
+  .loginpagecol-6 {
+    flex: 0 0 350px;
+    width: 350px;
+    max-width: 350px;
+    min-width: 350px;
+  }
+  .loginpagelogobox{
+    height: 10em;
+    margin: 0;
+    padding: 0;
+    border: none;  
+  }
+  
+  .loginpagelogo{  
+    margin-top: 3em;
+  }
+  .loginpageservername{  
+    margin-top: 1em;
+    text-transform: uppercase;
+  }
+  .loginpageloginbox{
+    height: calc(100vh - 5em - 10em);
+  }
+  .loginpageloginmargin{  
+    margin-top: 5em;
+  }
+  .loginpagesubmitmargin{
+    margin-top: 2em;
+  }
+  .loginpagesubmitmargin1{
+    margin-top: 5 em;
+  }
+  .loginpagecontactmargin{
+    /* margin-top: 9em; */
+  }
+  .loginpagecontactmargin1{
+    margin-top: 1em;
+  }
+  .loginpagecontacttext{
+    font-size:70%;
+  }
+  .loginpagefieldset{
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  .loginpageinputlogin{
+    width: 80%;
+  }
+  .loginpageloginsubmitbutton{
+    border: none;
+    width: 80%;
+  }
+  .loginpageloginhr{
+    width: 80%;
+  }
+  .loginpageinfotext{
+    /* margin-top: 12em; */
+    filter: none;  
+  }
+  .loginpagecontactinfofooter{
+    height: 5em;
+    border: none;
+    outline: none;
+  }
+  .loginpageinfotextheight{
+    text-align:center;
+    vertical-align: bottom;
+    align-items: flex-end;
+    display: inline-flex;
+    height: 50%;
+  }
+  .loginpageinfotextheight1{
+    text-align:center;
+    margin: 0;
+    height: 50%;
+  }
+
+  .loginpagemaininfo{
+    height: calc(100vh - 3em)
+  }
+  .loginpageinfotext1{
+    padding: 1em;
+  }

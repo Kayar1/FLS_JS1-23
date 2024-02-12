@@ -1,0 +1,62 @@
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+footer {
+      background-color: darkgray;
+      color: yellowgreen;
+      align-items: flex-end;
+      vertical-align: bottom;
+}        
+
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+body,
+h2 {
+  margin: 0;
+}
+
+header,
+footer,
+[class*='loginpagecol'] {
+  outline: 1px solid;
+}
+.allpagecopyright{
+  height: 3em;
+  filter: none;  
+}
+
+
+/* Colors */
+
+.darkblue {
+  background-color: darkslateblue;
+}
+.lightyellow {
+  background-color: lightgoldenrodyellow;
+}
+.lightgray{
+  color: lightgray
+}
+.darkgray{
+  color: darkgray
+}
+.blue{
+  background-color: blue;
+}
+.lightgreen{
+  background-color: lightgreen;
+}

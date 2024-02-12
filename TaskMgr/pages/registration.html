@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="my_head">
+    <link rel="stylesheet" href="../libs/normalize.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="../img/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css"  type="text/css"/>
+    <script src="../scripts/checkuser.js" type="module"></script>
+    <script type='text/javascript'></script>
+  </head>
+  <body>
+    <div class="loginpageregisterrow">
+        <aside class="loginpagecol-6 darkblue">
+            <div class="loginpagelogobox">
+                <img class="loginpagelogo" src="../img/logo_signin.png" alt="logo" />
+                <br>
+                <h2 class="loginpageservername">Task Manager</h2>
+            </div>
+            <div class="loginpageloginbox">
+                    <fieldset class="loginpagefieldset">
+                        <input class="loginpageloginmargin loginpageinputlogin darkblue lightgray"
+                            type="text"
+                            id="loginname"
+                            name="loginname"
+                            value="Ivanov"
+                        />
+                    </fieldset>
+                    <hr class="loginpageloginhr" />
+                    <fieldset class="loginpagefieldset">
+                        <input class="loginpageinputlogin darkblue lightgray"
+                            type="password"
+                            id="loginpass"
+                            name="loginpass"
+                            value="Asdfgh"
+                        />
+                    </fieldset>
+                    <input class="loginpagesubmitmargin loginpageloginsubmitbutton blue lightgray" type="button" onclick="checkUserProc()" value="Sign in" />                
+                    <br>
+                    <fieldset class="loginpagefieldset">
+                        <div class="loginpageloginmargin darkgray">
+                            <input type="checkbox" id="rememdermy" name="remembermy" />Remember my ID
+                        </div>
+                    </fieldset>
+                <hr class="loginpagesubmitmargin1 loginpageloginhr darkgray" />     
+            </div>
+            <footer class="loginpagecontactinfofooter darkblue">       
+                <div class="loginpagecontactmargin loginpagecontacttext "><a  class="darkgray" href="../pages/signup.html">Sign Up</a></div>
+                <br>
+                <div class="loginpagecontactmargin1 loginpagecontacttext1 "><a class="darkgray" href="../pages/contactpage.html">Contact Administrator</a></div>
+            </footer>
+        </aside>
+        <main class="loginpagecol lightyellow">            
+            <div class="loginpagemaininfo">            
+                <h2 class="loginpageinfotext loginpageinfotextheight">Task Manager</h2>
+                <div class="loginpageinfotext1 loginpageinfotextheight1">
+                    Task Manager
+                </div>
+            </div>
+            <footer class="allpagecopyright lightgray">
+                Copyright <span>&copy;</span>Task Manager<span>&trade;</span>
+                <br>                
+                <a href="../pages/contactus.html">Contact Us</a>
+            </footer>
+        </main>
+      </div>
+      <script>
+
+        async function checkUserProc() {
+
+            const userName = document.getElementsByName("loginname")[0].value;
+            const userPass = document.getElementsByName("loginpass")[0].value;            
+
+            let res = {};
+
+            res = await import('../scripts/checkuser.js').then(module=> module.getUserInfo(userName, userPass));
+
+            console.log(res);
+
+            if (res.login===userName) {
+                const htmlData = '<meta http-equiv="refresh" content="0; url=../pages/basepage.html"></meta>';
+                document.getElementById('my_head').innerHTML += htmlData;
+            }
+
+        }
+    </script>
+  </body>
+</html>
