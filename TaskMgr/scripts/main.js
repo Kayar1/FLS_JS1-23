@@ -254,10 +254,3 @@ export async function viewDictionary(str=''){
     const htmlData = getHTML(thead, data, str);
     document.querySelector('.my_table').innerHTML = htmlData; 
 }
-
-const dataMenu = await readAllData(DB_Menu, 'Menu');
-const htmlDataGlobalMenu = getHTMLGlobalMenu(dataMenu);
-document.querySelector('.my_glogalmenu').innerHTML = htmlDataGlobalMenu;
-
-const htmlDataMenu = getHTMLMenu(dataMenu, 'Dictionary');
-document.querySelector('.my_verticalmenu').innerHTML = htmlDataMenu;
