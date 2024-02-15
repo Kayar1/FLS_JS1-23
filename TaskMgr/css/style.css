@@ -1,4 +1,5 @@
 
+@import url(../libs/normalize.css);
 @import url(./main.css);
 @import url(../css/loginpage.css);
 @import url(../css/basepage.css);
