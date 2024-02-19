@@ -1,28 +1,42 @@
 export default class MenuView{
     constructor(){
-        this.DOMGlobalMenu = document.querySelector('.my_glogalmenu');
-        this.DOMSubMenu = document.querySelector('.my_verticalmenu');
+        this.DOMGlobalMenu = document.querySelector('.my-menu-items');
     }
 
-    getHTMLGlobalMenu(arr){
-        return arr.filter(el => el.folder === "1").map(el => `<li><a href="../scripts/${el.descr}.js">${el.descr}</a></li>
-        `).join('');
-    }
-
-    getHTMLSubMenu(arr, folderdescr = ''){
-        const parentID = arr.find(el => el.descr === folderdescr).id;
-        const res = arr.filter(el => el.folder === "0"&&el.parent === parentID).map(el => `<li><a onclick="import('../scripts/main.js').then(module=> module.selectverticalmenu('${el.descr}'))" type="button">${el.descr}</a></li>
-        `).join('');
+    getHTMLMenu(arr){
+        let res = `
+        <li class="nav-item my-menu-items-first-line">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>` + arr.filter(el => el.parent === "0").map(el1=>
+            arr.some(el2 => el2.parent === el1.id) ? `
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    ${el1.descr}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">` +
+            arr.filter(el2 => el2.parent === el1.id).map(el2 => el2.descr === '---driver---' ? `<li><hr class="dropdown-divider" /></li>` :`
+                    <li><a class="dropdown-item my-menu-items-second-line" onclick="viewTable('${el2.descr}')">${el2.descr}</a></li>
+                    `).join('') +
+            `
+                    </ul>
+            </li>
+            ` : `
+            <li class="nav-item">
+                <a class="nav-link active my-menu-items-first-line" aria-current="page" onclick="viewTable('${el1.descr}')">${el1.descr}</a>
+            </li>`
+            ).join('');
         return res;
     }
 
-    renderGlobal(arr){
-        const menuHTML = this.getHTMLGlobalMenu(arr);
+    render(arr){
+        const menuHTML = this.getHTMLMenu(arr);
         this.DOMGlobalMenu.innerHTML = menuHTML;
-    }
-
-    renderSubMenu(arr, folderdescr){
-        const menuHTML = this.getHTMLSubMenu(arr, folderdescr);
-        this.DOMSubMenu.innerHTML = menuHTML;
     }
 }

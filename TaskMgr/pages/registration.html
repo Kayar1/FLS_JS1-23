@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <title>Task Manager</title>
-    <link rel="stylesheet" href="../img/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../css/style.css"  type="text/css"/>
     <script src="../scripts/checkuser.js" type="module"></script>
     <script type='text/javascript'></script>
@@ -74,13 +73,9 @@
             const userName = document.getElementsByName("loginname")[0].value;
             const userPass = document.getElementsByName("loginpass")[0].value;            
 
-            let res = {};
+            const res = await import('../scripts/checkuser.js').then(module=> module.getUserInfo(userName, userPass));
 
-            res = await import('../scripts/checkuser.js').then(module=> module.getUserInfo(userName, userPass));
-
-            console.log(res);
-
-            if (res.login===userName) {
+            if (res.logname===userName) {
                 const htmlData = '<meta http-equiv="refresh" content="0; url=../pages/basepage.html"></meta>';
                 document.getElementById('my_head').innerHTML += htmlData;
             }

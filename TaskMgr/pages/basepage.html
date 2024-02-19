@@ -9,40 +9,81 @@
     <title>Task Manager</title>    
   </head>
   <body>
-    <div class="basepageregisterrow">
-        <aside class="basepagecol-6 darkblue">
-            <div class="basepagelogobox">
-                <img class="basepagelogo" src="../img/logo_signin.png" alt="logo" />
-            </div>
-            <nav class="basepagebuttonbox darkblue">
-                <ui class="basepagenavui lightgray my_glogalmenu">
-                    
-                </ui>
-            </nav>        
-        </aside>
-        <main class="basepagecol lightgray">    
-            <nav class="basepagenav lightgray">                
-            </nav>        
-            <div class="basepagewrap">
-                <aside class="basepageverticalmenu lightyellow">
-                  <row class="verticalmenurow">Dictionary</row>                  
-                  <div class="my_verticalmenu">
-
-                  </div>
-                </aside>
-                <aside class="basepagetabpage lightgreen">
-                  <div class="my_table">
-
-                  </div>                  
-                </aside>                                
-            </div>
-            <footer class="allpagecopyright lightgray">
-                Copyright <span>&copy;</span>Task Manager<span>&trade;</span>
-                <br>                
-                <a href="../pages/contactus.html">Contact Us</a>
-            </footer>
-        </main>
+    <nav class="navbar navbar-expand-lg my-menu-navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Task Manager</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 my-menu-items">
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success my-search-button" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
       </div>
-      <script src="../scripts/basepage.js" type="module"></script>
+    </nav>
+    <div class="basepagework">
+      <aside class="col-1 my-table-navigation-1">
+        <a>Tools 1</a>
+      </aside>
+      <aside class="col-10 basepagewindow" id="basepagewindow">
+        <div class="my-table-1" id="my-table-1">
+        </div>
+        <div class="my-table-2" id="my-table-2">
+        </div>    
+      </aside>
+      <aside class="col-1 my-table-navigation-2">
+        <a>Tools 2</a>
+      </aside>
+    </div>
+    <footer class="basepagefooter">
+      Copyright <span>&copy;</span> 2022, Kayar<span>&trade;</span>
+      <br>                
+      <a href="../pages/contactus.html">Contact Us</a>
+    </footer>
+    <script src="../scripts/basepage.js" type="module"></script>  
+    <script src="../libs/bootstrap.bundle.min.js"></script> 
+    <script>
+      async function viewTable(scrName){
+        switch(scrName){
+          case 'Clients': 
+            let clientsContoller = new (await import("../scripts/clients/clients-controller.js")).default;
+            await clientsContoller.start();break;
+            default: break;
+        }
+        
+      }
+      async function viewFullInfo(scrName, scrID){
+        switch(scrName){
+          case 'Clients': 
+            let clientsContoller = new (await import("../scripts/clients/clients-controller.js")).default;
+            await clientsContoller.getClient(scrID);break;
+            default: break;
+        }
+        
+        const element1 = document.getElementById("my-table-1");
+        element1.classList.remove("my-table-1");
+        element1.classList.add("my-table-3");
+        const element2 = document.getElementById("my-table-2");
+        element2.classList.remove("my-table-2");
+        element2.classList.add("my-table-4");
+
+      }
+      function closeOneWindow(){
+        const element1 = document.getElementById("my-table-1");
+        element1.classList.remove("my-table-3");
+        element1.classList.add("my-table-1");
+        const element2 = document.getElementById("my-table-2");
+        element2.classList.remove("my-table-4");
+        element2.classList.add("my-table-2");
+      }
+    </script>
   </body>
 </html>

@@ -1,12 +1,10 @@
 const DB_Clients = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=0&single=true&output=tsv';
-const DB_Users = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1423900919&single=true&output=tsv';
+const DB_Users = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1913634885&single=true&output=tsv';
 const DB_Users_Rights = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=920636469&single=true&output=tsv';
 const DB_Rights = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=2098220145&single=true&output=tsv';
 const DB_Task_Types = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1714634649&single=true&output=tsv';
 const DB_Status_Types = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1573488353&single=true&output=tsv';
-
-const DB_Menu = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=448472362&single=true&output=tsv';
-
+const DB_Workers = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1423900919&single=true&output=tsv";
 
 class Client {
     id;
@@ -92,20 +90,7 @@ class Status_Types {
         this.descr = arr[1];
     }
 }
-class Menus {
-    id;
-    folder;
-    parent;
-    descr;
-    img;
-    constructor(arr){
-        this.id = arr[0];
-        this.folder = arr[1];
-        this.parent = arr[2];
-        this.descr = arr[3];
-        this.img = arr[4];
-    }
-}
+
 class Tasks {
     id;
     constructor(){
@@ -120,11 +105,11 @@ function parser(t, className){
     switch (className){
         case 'Clients': rawData.map(arr => data.push(new Client(arr))); break;
         case 'Rights': rawData.map(arr => data.push(new Rights(arr))); break;
+        case 'Workers': rawData.map(arr => data.push(new Users(arr))); break;
         case 'Users': rawData.map(arr => data.push(new Users(arr))); break;
         case 'User_Rights': rawData.map(arr => data.push(new User_Rights(arr))); break;
         case 'Task Types': rawData.map(arr => data.push(new Task_Types(arr))); break;
         case 'Status Types': rawData.map(arr => data.push(new Status_Types(arr))); break;
-        case 'Menu': rawData.map(arr => data.push(new Menus(arr))); break;
         default: break;
     }    
     return data;
@@ -162,18 +147,6 @@ function getHTML(arrhead, arr, str = ''){
                         `)).join('')+`
                     <tbody>
                 </table>`;
-    return res;
-}
-
-function getHTMLGlobalMenu(arr){
-    return arr.filter(el => el.folder === "1").map(el => `<li><a href="../scripts/${el.descr}.js">${el.descr}</a></li>
-    `).join('');
-}
-
-function getHTMLMenu(arr, str = ''){
-    const parentID = arr.find(el => el.descr === str).id;
-    const res = arr.filter(el => el.folder === "0"&&el.parent === parentID).map(el => `<li><a onclick="import('../scripts/main.js').then(module=> module.selectverticalmenu('${el.descr}'))" type="button">${el.descr}</a></li>
-    `).join('');
     return res;
 }
 

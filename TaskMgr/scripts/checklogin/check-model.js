@@ -1,5 +1,5 @@
-export default class MenuModel{
-    DB_Menu = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=448472362&single=true&output=tsv';
+export default class CheckModel{
+    DB = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTTGO4D6XJ7HEmzKgxv46gLSTtsT9pRKaQB01GreLJVqc5IYgycthmu27d3_8XgJqj9ThtH1uLUEjX/pub?gid=1913634885&single=true&output=tsv';
 
     parser(t){
         const rawData = t.split('\r\n').map(line => line.split('\t'));
@@ -11,9 +11,10 @@ export default class MenuModel{
         return data;
     }
 
-    load(){
-        return fetch(this.DB_Menu)
+    async load(){
+        return await fetch(this.DB)
             .then(r => r.text()).
             then(this.parser);
     }
-}
+
+    }
