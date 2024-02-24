@@ -44,6 +44,14 @@
     width: 30px;
 }
 
+
+.my-alarm-button{
+    border: auto;
+    color:brown;
+    font-size: 22px;
+    width: 65px;
+}
+
 .my-alarm-check{
     color:brown;
     font-size: 22px;

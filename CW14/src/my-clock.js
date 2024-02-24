@@ -15,14 +15,6 @@ export default class MyClock {
     arrowHour = "my-hour-arrow";
     clockBack = "hour-";
     digitalClockName = "my-digital-clock";
-    alarmClockName = "my-alarm-clock";
-    alarmHourName = "my-alarm-hour";
-    alarmMinuteName = "my-alarm-minute";
-    alarmSecondName = "my-alarm-second";
-    alarmCheckbox = "my-alarm-checkbox";
-    chikenGroupName = "my-chiken-group";
-    audioFileName = "./XAXA/chicken.wav";
-    controlAlarm = false;
     pointSize = 30;
     timer = 1000;
     radiusSecond;
@@ -32,8 +24,10 @@ export default class MyClock {
     centerX;
     centerY;
     radius;
+    obzerver;
 
     constructor(objectName, centerX, centerY, radius, obzerver){
+        this.obzerver = obzerver;
         this.objectName = objectName;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -42,7 +36,6 @@ export default class MyClock {
         this.radiusMinute = this.radius * 0.75;
         this.radiusHour = this.radius * 0.6;
         this.drawClock();
-        this.obzerver = obzerver;
     }
 
     start = () => {
@@ -95,7 +88,7 @@ export default class MyClock {
         this.drawArrows(this.arrowMinute, this.radiusMinute, this.maxMinuteValue, this.widthMinute, this.colorMinute, this.getMinutes());
         this.drawArrows(this.arrowHour, this.radiusHour, this.maxHourValue, this.widthHour, this.colorHour, this.getHour());
 
-        this.obzerver.notify(this.objerver.events.NewTime, this.getDigitalHour(), this.getMinutes(), this.getSeconds());       
+        this.obzerver.notify(this.obzerver.events.NewTime, this.getHourDigital(), this.getMinutes(), this.getSeconds());       
     }
 
     drawClock = () =>{
@@ -110,15 +103,13 @@ export default class MyClock {
         s += `<canvas class="my-arrow" id="${this.arrowHour}"></canvas>`;
 
         s += `<div class="my-digital-box" id="${this.digitalClockName}"></div>`;
-        
 
         document.getElementById(this.objectName).innerHTML = s;
-        document.getElementById(this.chikenGroupName).hidden = true;
         
         for (let i = 1; i <= 12; i++) {
             const hours = document.getElementById(`${this.clockBack}${i}`);
-            const x = centerX + radius * Math.cos((180 - 360 / 12 * i) * Math.PI / 180) - this.pointSize / 2;
-            const y = centerY + radius * Math.sin((180 - 360 / 12 * i) * Math.PI / 180) - this.pointSize / 2;
+            const x = this.centerX + this.radius * Math.cos((180 - 360 / 12 * i) * Math.PI / 180) - this.pointSize / 2;
+            const y = this.centerY + this.radius * Math.sin((180 - 360 / 12 * i) * Math.PI / 180) - this.pointSize / 2;
             hours.style.top = `${x}px`;
             hours.style.left = `${y}px`;
             hours.style.width = `${this.pointSize}px`;

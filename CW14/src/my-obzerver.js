@@ -1,7 +1,8 @@
 export default class MyObserver{
     #listeners={};
     events = {
-        'NewTime' : 'изменение времени'
+        'NewTime' : 'изменение времени',
+        'CloseAudio' : 'остановка звука'
     }
     subscibe(event, callback){
         if (!this.#listeners[event]){
@@ -19,6 +20,6 @@ export default class MyObserver{
         if (!this.#listeners[event]){
             this.#listeners[event]=[];
         }
-        this.#listeners.forEach(callback => callback(h, m, s));
+        this.#listeners[event].forEach(callback => callback(h, m, s));
     }
 }
