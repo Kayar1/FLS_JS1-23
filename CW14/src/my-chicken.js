@@ -1,5 +1,5 @@
 export default class MyChiken {
-    constructor(objName, obzerver){
+    constructor(objName, centerX, centerY, radius, obzerver){
         this.obzerver = obzerver;
         this.objectName = objName;
         this.alarmCheckbox = "my-alarm-checkbox";
@@ -11,7 +11,10 @@ export default class MyChiken {
         this.alarmSecondName = "my-alarm-second";
         this.alarmCheckbox = "my-alarm-checkbox";
         this.alarmClose = "my-close-button";
-        
+        this.centerX = centerX;
+        this.centerY = centerY;
+        this.radius = radius;
+        console.log(obzerver);
         this.obzerver.subscibe(this.obzerver.events.NewTime, this.onNewTime);
         this.obzerver.subscibe(this.obzerver.events.CloseAudio, this.onStopAudio);
 
