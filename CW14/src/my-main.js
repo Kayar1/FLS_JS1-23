@@ -10,7 +10,7 @@ export default class MyMain {
 
         const myObzerver = new (await import("./my-obzerver.js")).default;
         const myClock = new (await import("./my-clock.js")).default("my-clock", centerX, centerY, radius, myObzerver);
-        const myChicken = new (await import("./my-chicken.js")).default("my-chicken", myObzerver);
+        const myChicken = new (await import("./my-chicken.js")).default("my-chicken", centerX, centerY, radius, myObzerver);
         myClock.start();
 
         return myObzerver;

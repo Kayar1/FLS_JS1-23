@@ -14,7 +14,6 @@ export default class MyChiken {
         this.centerX = centerX;
         this.centerY = centerY;
         this.radius = radius;
-        console.log(obzerver);
         this.obzerver.subscibe(this.obzerver.events.NewTime, this.onNewTime);
         this.obzerver.subscibe(this.obzerver.events.CloseAudio, this.onStopAudio);
 
@@ -33,15 +32,15 @@ export default class MyChiken {
         this.myAudio.play();
     }
 
-    getSeconds = () => {
+    get Seconds(){
         return new Date().getSeconds();
     }
 
-    getMinutes = () => {
+    get Minutes(){
         return new Date().getMinutes();
     }
 
-    getHour = () => {
+    get Hour(){
         return new Date().getHours();
     }
 
@@ -51,7 +50,7 @@ export default class MyChiken {
                 <input class="my-alarm-input" id="${this.alarmMinuteName}" value=00></input>
                 <input class="my-alarm-input" id="${this.alarmSecondName}" value=00></input>
                 <input class="my-alarm-check" id="${this.alarmCheckbox}" type="checkbox"></input>
-                <button class="my-alarm-button" id="${this.alarmClose}" onclick="stopAudio()" type="button">Close</button>
+                <button class="my-alarm-button" id="${this.alarmClose}" " type="button">Close</button>
             </div>
             <div class="${this.chikenGroupName}" id="${this.chikenGroupName}">
                 <IMG height=119 src="./XAXA/image001.gif" width=74 align=baseline border=0>
@@ -66,6 +65,7 @@ export default class MyChiken {
         document.getElementById(this.objectName).innerHTML = s;
         document.getElementById(this.chikenGroupName).hidden = true;
         document.getElementById(this.alarmClose).hidden = true;
+        document.getElementById(this.alarmClose).addEventListener('click',()=>this.obzerver.notify(this.obzerver.events.CloseAudio));
     }
 
     onStopAudio = ()=>{
@@ -76,9 +76,9 @@ export default class MyChiken {
 
     onNewTime = (h, m, s) => {
         if (document.getElementById(this.alarmCheckbox).checked){
-            if (this.getHour()===parseInt(document.getElementById(this.alarmHourName).value)&&
-                this.getMinutes()===parseInt(document.getElementById(this.alarmMinuteName).value)&&
-                this.getSeconds()===parseInt(document.getElementById(this.alarmSecondName).value)){
+            if (this.Hour===parseInt(document.getElementById(this.alarmHourName).value)&&
+                this.Minutes===parseInt(document.getElementById(this.alarmMinuteName).value)&&
+                this.Seconds===parseInt(document.getElementById(this.alarmSecondName).value)){
                 document.getElementById(this.alarmCheckbox).checked = false;
                 this.alarmEvent();
             }

@@ -53,52 +53,52 @@ export default class MyClock {
         const x = this.centerX;
         const y = this.centerY;
         const x1 = this.centerX + radius * Math.cos((-Math.PI / 2 + angle) * Math.PI / 180);
-        const y1 = this.centerY + radius * Math.sin((-Math.PI / 2 + angle) * Math.PI / 180);        
-        ctx.beginPath();                
-        ctx.translate(x,y);
+        const y1 = this.centerY + radius * Math.sin((-Math.PI / 2 + angle) * Math.PI / 180);
+        ctx.beginPath();
+        ctx.translate(x, y);
         ctx.rotate(-Math.PI / 2 + angle);
         ctx.moveTo(0, 0);
         ctx.lineTo(radius * 0.8, - width * 5);
         ctx.lineTo(radius, 0);
         ctx.lineTo(radius * 0.8, + width * 5);
         ctx.lineTo(0, 0);
-        ctx.lineTo(radius, 0);        
+        ctx.lineTo(radius, 0);
         ctx.fillStyle = color;
         ctx.lineWidth = width;
         ctx.strokeStyle = color;
-        ctx.closePath();        
+        ctx.closePath();
         ctx.stroke();
-        ctx.translate(0,0);        
+        ctx.translate(0, 0);
     }
 
-    getSeconds = () => {
+    get Seconds (){
         return new Date().getSeconds();
     }
 
-    getMinutes = () => {
+    get Minutes(){
         return new Date().getMinutes();
     }
 
-    getHourDigital = () => {
+    get HourDigital(){
         return new Date().getHours();
     }
 
-    getHour = () => {
+    get Hour(){
         let curHour = new Date().getHours();
-        return (curHour >= this.maxHourValue ? curHour - this.maxHourValue : curHour) * 60 + this.getMinutes();
+        return (curHour >= this.maxHourValue ? curHour - this.maxHourValue : curHour) * 60 + this.Minutes;
     }
 
     setDigitalInfo = () => {
-        document.getElementById(this.digitalClockName).innerText = this.getHourDigital().toString().padStart(2, "0") + ' : ' + this.getMinutes().toString().padStart(2, "0") + ' : ' + this.getSeconds().toString().padStart(2, "0");
+        document.getElementById(this.digitalClockName).innerText = this.HourDigital.toString().padStart(2, "0") + ' : ' + this.Minutes.toString().padStart(2, "0") + ' : ' + this.Seconds.toString().padStart(2, "0");
     }
 
     change = () => {
         this.setDigitalInfo();
-        this.drawArrows(this.arrowSecond, this.radiusSecond, this.maxSecondValue, this.widthSecond, this.colorSecond, this.getSeconds());
-        this.drawArrows(this.arrowMinute, this.radiusMinute, this.maxMinuteValue, this.widthMinute, this.colorMinute, this.getMinutes());
-        this.drawArrows(this.arrowHour, this.radiusHour, this.maxHourValue, this.widthHour, this.colorHour, this.getHour());
+        this.drawArrows(this.arrowSecond, this.radiusSecond, this.maxSecondValue, this.widthSecond, this.colorSecond, this.Seconds);
+        this.drawArrows(this.arrowMinute, this.radiusMinute, this.maxMinuteValue, this.widthMinute, this.colorMinute, this.Minutes);
+        this.drawArrows(this.arrowHour, this.radiusHour, this.maxHourValue, this.widthHour, this.colorHour, this.Hour);
 
-        this.obzerver.notify(this.obzerver.events.NewTime, this.getHourDigital(), this.getMinutes(), this.getSeconds());
+        this.obzerver.notify(this.obzerver.events.NewTime, this.HourDigital, this.Minutes, this.Seconds);
     }
 
     drawClock = () => {
@@ -109,6 +109,7 @@ export default class MyClock {
             `;
         }
 
+        s += `<canvas class="my-arrow" id="${this.clockBack}0"></canvas>`;
         s += `<canvas class="my-arrow" id="${this.arrowSecond}"></canvas>`;
         s += `<canvas class="my-arrow" id="${this.arrowMinute}"></canvas>`;
         s += `<canvas class="my-arrow" id="${this.arrowHour}"></canvas>`;
@@ -116,6 +117,23 @@ export default class MyClock {
         s += `<div class="my-digital-box" id="${this.digitalClockName}"></div>`;
 
         document.getElementById(this.objectName).innerHTML = s;
+
+        const example = document.getElementById(`${this.clockBack}0`),
+            ctx = example.getContext('2d');
+        example.height = 2 * this.centerY;
+        example.width = 2 * this.centerX;
+        example.top = `${0}px`;
+        example.left = `${0}px`;
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "brown";
+        ctx.beginPath();
+        ctx.moveTo(this.centerX, 0);
+        ctx.lineTo(this.centerX * 2 + this.pointSize, this.pointSize);
+        ctx.lineTo(- this.pointSize, this.pointSize);
+        ctx.closePath();
+        //ctx.beginPath();
+        ctx.rect(this.pointSize, this.pointSize, this.centerX * 2 - 2 * this.pointSize, this.centerY * 2 - 2 * this.pointSize);
+        ctx.stroke();
 
         const angle = 2 * Math.PI / 12;
 

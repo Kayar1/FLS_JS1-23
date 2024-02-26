@@ -16,7 +16,7 @@
 
 .my-digital-box{
     position: absolute;
-    top: 150px;
+    top: 350px;
     left: 750px;
     height: 150px;
     width: 500px;
@@ -27,7 +27,7 @@
 
 .my-alarm-box{
     position: absolute;
-    top: 350px;
+    top: 450px;
     left: 750px;
     height: 100px;
     width: 500px;
@@ -60,6 +60,6 @@
 
 .my-chiken-group{
     position: absolute;
-    top: 450px;
+    top: 10px;
     left: 750px;   
 }

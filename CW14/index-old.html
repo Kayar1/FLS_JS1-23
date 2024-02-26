@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href=".\favicon.ico" type="image/x-icon">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -11,5 +10,18 @@
     <div id="my-clock"></div>
     <div id="my-chicken"></div>
     <script src=".\src\main.js" type="module"></script>
+    <script>
+      /*let myObserver;
+      async function run(){
+        const myMain = new (await import("./src/my-main.js")).default;
+        myObserver = await myMain.start();
+      }
+      run();*/
+    </script>
+    <script>
+      function stopAudio(){
+        //myObserver.notify(myObserver.events.CloseAudio);
+      }
+    </script>
   </body>
 </html>
