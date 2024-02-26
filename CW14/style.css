@@ -1,11 +1,11 @@
 
 .circle {
-    background-color: gray;
     color: yellow;
     align-items: center;
     align-content: center;
     position:absolute;
     font-size: 22px;
+    background-color: gray;
     
 } 
 .my-arrow{
@@ -20,7 +20,6 @@
     left: 750px;
     height: 150px;
     width: 500px;
-    border: auto;
     color:blueviolet;
     font-size: 50px;
 }

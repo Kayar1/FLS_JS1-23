@@ -37,6 +37,7 @@ console.log('Other Tests');
 const results = [];
 const maxRooms = 10;
 const maxOrder = 8;
+
 for (let k = 0; k < 50; k++) {
     console.log(`Order # ${k}`);
     let myRooms = [];

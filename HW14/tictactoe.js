@@ -1,8 +1,11 @@
 console.log('Task 1');
 
-class User{
-    constructor(symb){
+class User {
+    id;
+
+    constructor(symb, value) {
         this.symbol = symb;
+        this.value = value;
     }
 
     step = (board) => {
@@ -10,25 +13,26 @@ class User{
         let y = 0;
         let count = 1000;
 
-        while (board.board[x][y] !== 0 && count > 0){
+        while (board.board[x][y] !== 0 && count > 0) {
             x = Math.floor(Math.random() * 3);
             y = Math.floor(Math.random() * 3);
             count--;
         }
 
-        if (board.board[x][y] === 0) board.board[x][y] = this.symbol;        
+        if (board.board[x][y] === 0) board.board[x][y] = this.value;
     }
 }
 
-class Board{
-    constructor(){
+class Board {
+    id;
+    constructor() {
         this.board = [];
         for (let i = 0; i < 3; i++) {
             this.board[i] = [0, 0, 0];
         }
     }
-    showBoard() {
-        console.log(`Board :`);
+    showBoard(user) {
+        console.log(`Board after step ${user.symbol} = ${user.value} :`);
         for (let i = 0; i < 3; i++) {
             console.log(this.board[i]);
         }
@@ -52,22 +56,47 @@ class Board{
     }
 }
 
-const userX = new User(1);
-const userO = new User(2);
-const myBoard = new Board();
-
-let step = 0;
-let result = myBoard.checkBoard(); 
-while (result === -1){
-    if (step === 0){
-        userX.step(myBoard);
-    } else{
-        userO.step(myBoard);
-    } 
-    myBoard.showBoard();
-    step = 1 - step;
-    result = myBoard.checkBoard();
+const stepOfUser = function(user, board){
+    if (result === -1) {
+        user.step(board);
+        board.showBoard(user);
+    }    
 }
-console.log(`Result = ${result}`);
-console.log('0 - no wins / 1 - win X / Win O');
+
+const userX = new User('X', 1);
+const userO = new User('O', 2);
+const myBoard = new Board();
+let result = -1;
+
+userX.id = setInterval(() => {
+    stepOfUser(userX, myBoard);
+}, 2000);
+
+setTimeout(()=> {
+    userO.id = setInterval(() => {
+        stepOfUser(userO, myBoard);
+    }, 2000);
+    
+}, 1000);
+
+setTimeout(()=> {
+    myBoard.id = setInterval(() => {
+        result = myBoard.checkBoard();
+        if (result !== -1){
+            clearInterval(userX.id);
+            clearInterval(userO.id);
+            clearInterval(myBoard.id);
+
+            console.log('0 - no wins / 1 - win X / 2 - Win O');
+            console.log(`Result = ${result}`);
+            switch (result){
+                case 1: console.log('WIN X !!!');break;
+                case 2: console.log('WIN O !!!');break;
+                default: console.log('No Wins');break;
+            }
+        }
+    }, 1000);    
+}, 500);
+
+
 
