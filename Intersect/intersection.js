@@ -1,4 +1,9 @@
 export default class Intersection {
+    /*
+    figure - array of point { x, y }
+    point - point { x, y } 
+
+*/
     static isFigureInFigure(figure1, figure2) {
         let result = false;
 
