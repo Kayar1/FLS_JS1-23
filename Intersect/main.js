@@ -34,7 +34,7 @@ figura4[2] = { x: 500, y: 50 };
 figura4[3] = { x: 400, y: 800 };
 
 const point1 = { x: 10, y: 10 };
-const point2 = { x: 1000, y: 1000 };
+const point2 = { x: 500, y: 500 };
 
 console.log(`Figure1 : ${figura1.reduce((a, b) => a += `{ ${b.x} , ${b.y} }, `, '')}`);
 console.log(`Figure2 : ${figura2.reduce((a, b) => a += `{ ${b.x} , ${b.y} }, `, '')}`);
@@ -65,6 +65,8 @@ drawFigure(figura2, "figura2", "red", 3);
 drawFigure(figura21, "figura21", "blue", 3);
 drawFigure(figura3, "figura3", "brown", 3);
 drawFigure(figura4, "figura4", "yellow", 3);
+drawPoint(point1, "point1", "magenta", 3);
+drawPoint(point2, "point2", "lightblue", 3);
 
 
 function drawFigure(figure = [], figureName, color = "black", width = 1) {
@@ -94,3 +96,23 @@ function drawFigure(figure = [], figureName, color = "black", width = 1) {
     document.body.appendChild(domElement);
 }
 
+function drawPoint(point, figureName, color = "black", width = 1) {
+    console.log(figureName,' - ', color);
+    let domElement = document.createElement('canvas');
+    domElement.classList.add('myfigure');    
+    const ctx = domElement.getContext('2d');
+    const maxX = point.x + 10;
+    const maxY = point.y + 10;
+    domElement.height = maxY;
+    domElement.width = maxX;
+    domElement.top = `${0}px`;
+    domElement.left = `${0}px`;
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 10, 0, 2 * Math.PI);
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+    document.body.appendChild(domElement);
+}
