@@ -13,7 +13,9 @@ const figura2 = [];
 figura2[0] = { x: 40, y: 40 };
 figura2[1] = { x: 300, y: 40 };
 figura2[2] = { x: 300, y: 350 };
-figura2[3] = { x: 40, y: 350 };
+figura2[3] = { x: 250, y: 350 };
+figura2[4] = { x: 200, y: 400 };
+figura2[5] = { x: 40, y: 350 };
 
 const figura21 = [];
 figura21[0] = { x: 100, y: 100 };
@@ -24,8 +26,10 @@ figura21[3] = { x: 100, y: 250 };
 const figura3 = [];
 figura3[0] = { x: 400, y: 20 };
 figura3[1] = { x: 600, y: 20 };
-figura3[2] = { x: 600, y: 400 };
-figura3[3] = { x: 400, y: 400 };
+figura3[2] = { x: 600, y: 200 };
+figura3[3] = { x: 500, y: 350 };
+figura3[4] = { x: 600, y: 400 };
+figura3[5] = { x: 400, y: 400 };
 
 const figura4 = [];
 figura4[0] = { x: 350, y: -100 };
@@ -65,7 +69,7 @@ console.log("Is figure3 intersect cirsle1? = ", Intersection.isCircleIntersectFi
 
 console.log("Is figure21 intersect cirsle1? = ", Intersection.isCircleIntersectFigure(circle1, figura21));
 
-console.log("Is figure21 intersect cirsle1? = ", Intersection.isFigureInCircle(circle1, figura21));
+console.log("Is figure21 in cirsle1? = ", Intersection.isFigureInCircle(circle1, figura21));
 
 console.log("Is circle2 in figure1? = ", Intersection.isCircleInFigure(circle2, figura1));
 
