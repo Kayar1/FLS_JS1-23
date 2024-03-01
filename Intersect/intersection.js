@@ -1,6 +1,7 @@
 export default class Intersection {
-    /*
+/*
     figure - array of point { x, y }
+    circle - {x, y, r}
     point - point { x, y } 
 
 */
@@ -24,7 +25,7 @@ export default class Intersection {
         return result;
     }
 
-    static isIntersectFigure(figure1, figure2) {
+    static isFigureIntersectFigure(figure1, figure2) {
         let result = false;
 
         // Fists step - prioection of figures on XOY ray - intersection of boarding box
@@ -103,7 +104,6 @@ export default class Intersection {
         }
 
     }
-
 
     static isSectionIntersectSection(p1, p2, p3, p4) {
         Intersection.chechRightVector(p1, p2);
@@ -191,6 +191,79 @@ export default class Intersection {
         if ((newPoints1[0].x <= point.x && point.x <= newPoints1[1].x) ||
             (newPoints1[0].y <= point.y && point.y <= newPoints1[1].y)) {
             result = true;
+        }
+
+        return result;
+    }
+
+    static isFigureInCircle(circle1, figure1){
+        let result = false;
+
+        const temp = [];
+        for (let i = 0; i < figure1.length; i++ ){
+            const h = Math.sqrt(Math.pow((figure1[i].x - circle1.x),2) + Math.pow(figure1[i].y - circle1.y,2));
+            if (h <= circle1.r) temp.push(1);
+        }
+        if (temp.reduce((a,b) => a = a + b) === figure1.length) result = true;
+
+        return result;
+    }
+
+    static isCircleIntersectFigure(circle1, figure1){
+        let result = false;
+
+        let temp = 0;
+        for (let i = 0; i < figure1.length; i++ ){
+            const h = Math.sqrt(Math.pow((figure1[i].x - circle1.x),2) + Math.pow(figure1[i].y - circle1.y,2));
+            if (h <= circle1.r) temp++;
+        }
+        
+        if (0 < temp && temp < figure1.length){
+            result = true;
+        }else{
+            temp = 0;
+            for (let i = 1; i < figure1.length; i++ ){
+                const b = Math.sqrt(Math.pow((figure1[i-1].x - circle1.x),2) + Math.pow(figure1[i-1].y - circle1.y,2));
+                const c = Math.sqrt(Math.pow((figure1[i].x - circle1.x),2) + Math.pow(figure1[i].y - circle1.y,2));
+                const a = Math.sqrt(Math.pow((figure1[i-1].x - figure1[i].x),2) + Math.pow(figure1[i-1].y - figure1[i].y,2));
+                const p = (a + b + c) / 2;
+                const h = 2 * Math.sqrt(p * (p - a) * (p - b) * (p - c)) / a
+                if (h <= circle1.r) temp++;
+            }
+            if (0 < temp && temp < figure1.length - 1) result = true;
+        }
+
+        return result;
+    }
+
+    static isCircleInFigure(circle1, figure1){
+        let result = false;
+
+        let temp = 0;
+        let temp1 = 0;
+        let temp2 = 0;
+        let temp3 = 0;
+        let temp4 = 0;
+        for (let i = 0; i < figure1.length; i++ ){
+            const h = Math.sqrt(Math.pow((figure1[i].x - circle1.x),2) + Math.pow(figure1[i].y - circle1.y,2));
+            if (h >= circle1.r) temp++;
+            if (figure1[i].x < circle1.x){
+                if (figure1[i].y < circle1.y){
+                    temp1++;
+                }else{
+                    temp2++;
+                }
+            }else{
+                if (figure1[i].y < circle1.y){
+                    temp3++;
+                }else{
+                    temp4++;
+                }
+            }
+        }
+        
+        if (temp === figure1.length){
+            if (temp1 > 0 && temp2 > 0 && temp3 > 0 && temp4 > 0) result = true;
         }
 
         return result;
