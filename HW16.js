@@ -151,11 +151,14 @@ class PasswordGenerator{
     generateSecurePassword = (length) => {
         return PasswordGenerator.generateSecurePassword(length);
     }
+    static getSymbol(startCode, length){
+        return String.fromCharCode(startCode + Math.floor(Math.random() * length))
+    }
     static generatePassword = (length) => {
         let result = '';
         //a-z
         for (let i = 0; i<length; i++){
-            result += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+            result += PasswordGenerator.getSymbol(97, 26);
         }
         return result;
     }
@@ -165,19 +168,19 @@ class PasswordGenerator{
         length -= len1 * 3;
         // A - Z
         for (let i = 0; i<len1; i++){
-            result += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            result += PasswordGenerator.getSymbol(65, 26);
         }
         // a-z
         for (let i = 0; i<length; i++){
-            result += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+            result += PasswordGenerator.getSymbol(97, 26);
         }        
         //0 - 9
         for (let i = 0; i<len1; i++){
-            result += String.fromCharCode(48 + Math.floor(Math.random() * 10));
+            result += PasswordGenerator.getSymbol(48, 10);
         }
         // ! - /
         for (let i = 0; i<len1; i++){
-            result += String.fromCharCode(33 + Math.floor(Math.random() * (47-33)));
+            result += PasswordGenerator.getSymbol(33, 47-33);
         }
         return result;
     }
