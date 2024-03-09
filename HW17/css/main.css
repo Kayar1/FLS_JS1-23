@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: lightgray;
+    overflow: auto;
+}
+
+.my-table-div1 {
+    height: 45vh;
+    overflow: auto;
+  }
+.my-table-div2 {
+    height: calc(100vh - 45vh);
+    overflow: auto;
+  }
+.my-table {
+    border:1px solid black;
+    width: 100%;
+  }
+.my-table-head-row {
+    border:1px solid black;
+    overflow: auto;
+  }
+.my-table-head-cell {
+    border:1px solid black;
+    text-align: center;
+    font-weight: bold;
+    overflow: auto;
+  }
+.my-table-data-row {
+    border:1px solid black;
+    overflow: auto;
+    vertical-align: top;
+  }
+.my-table-data-cell {
+    border:1px solid black;
+    vertical-align: top;
+    overflow: auto;
+  }

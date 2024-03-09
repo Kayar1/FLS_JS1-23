@@ -1,0 +1,84 @@
+import Worker from "./jobs/worker.js";
+import Admin from "./jobs/admin.js";
+import Developer from "./jobs/developer.js";
+import Frontend from "./jobs/frontend.js";
+import Backend from "./jobs/backend.js";
+import Fullstack from "./jobs/fullstack.js";
+import Tester from "./jobs/tester.js";
+import Game from "./game.js";
+import Project from "./project.js";
+import Company from "./company.js";
+import Tiker from "./tiker.js";
+import UI from "./ui.js";
+
+UI.generateScreen();
+
+const tiker = new Tiker(); 
+function stepDay(){
+    tiker.notify(tiker.events.NEXT_DAY);
+}
+
+const games = [];
+games.push(new Game({name : 'arcanoid', genre : Game.Genres.shuter, issue : 1980, complexity : -5}));
+games.push(new Game({name : 'spacewar', genre : Game.Genres.spacelight, issue : 2000, complexity : 10}));
+games.push(new Game({name : 'formula1', genre : Game.Genres.racing, issue : 2005, complexity : 5}));
+games.push(new Game({name : 'warcraft', genre : Game.Genres.arcade, issue : 2010, complexity : 15}));
+UI.addHTMLInfo('Games', games.reduce( (res, el) => res += el.print(), ''));
+
+const workers = [];
+workers.push(new Admin({name: 'Igor'}));
+workers.push(new Admin({name: 'Egor'}));
+workers.push(new Developer({name: 'John'}));
+workers.push(new Developer({name: 'Eugen'}));
+workers.push(new Frontend({name: 'Simon'}));
+workers.push(new Frontend({name: 'Peter'}));
+workers.push(new Backend({name: 'Jerry'}));
+workers.push(new Backend({name: 'Alex'}));
+workers.push(new Fullstack({name: 'Ivan'}));
+workers.push(new Fullstack({name: 'Jack'}));
+workers.push(new Tester({name: 'Anna'}));
+workers.push(new Tester({name: 'Iren'}));
+
+workers[2].changeExperience({skill: Worker.Skills.developer, experience: 5});
+workers[2].addSkill({skill: Worker.Skills.middle, experience: 1});
+workers[2].addSkill({skill: Worker.Skills.senior, experience: 3});
+workers[2].performance += workers[2].performance;
+workers[2].salary += 2000;
+
+UI.addHTMLInfo('Workers', workers.reduce( (res, el) => res += el.print(), ''));
+
+const projects = [];
+projects.push(new Project({game : games[2], tiker : tiker}));
+projects[0].addProg(workers[2]);
+UI.addHTMLInfo('Projects', projects[0].print());
+
+const companies = [];
+companies.push(new Company({name : 'SoftServ', tiker : tiker}));
+companies[0].addGame({game : games[0]});
+companies[0].addProject(projects[0]);
+
+function printCompanies(){
+    UI.clearHTMLInfo('Companies');
+    UI.addHTMLInfo('Companies', companies.reduce( (res, el) => res += el.print(), ''));
+}
+
+printCompanies();
+
+UI.addStatusInfo(companies[0].startProjectById(0));
+
+function addProger(id1, id2){
+    UI.addStatusInfo(companies[0].addProgById({id : id1, worker : workers[id2]}));
+    printCompanies()
+}
+function start2(){
+    UI.addStatusInfo(companies[0].startProjectById(1));
+}
+
+
+setInterval(stepDay, 2000);
+setTimeout(addProger, 5000, 0, 1);
+
+setTimeout(start2, 6000);
+
+setTimeout(addProger, 8000, 1, 4);
+setTimeout(addProger, 10000, 1, 7);
