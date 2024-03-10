@@ -1,8 +1,8 @@
-export default class UI{
-    
+export default class UI {
+
     static TableHeads = ['Games', 'Projects', 'Workers', 'Companies'];
 
-    static generateScreen(){
+    static generateScreen() {
         const domElementDiv1 = document.createElement('div');
         domElementDiv1.classList.add('my-table-div1');
         const domElementTable1 = document.createElement('table');
@@ -10,21 +10,31 @@ export default class UI{
         const domElementTable1RowHead = domElementTable1.insertRow(0);
         domElementTable1RowHead.classList.add('my-table-head-row');
         const domElementTable1RowHeadCell = [];
-        for (let i=0; i< this.TableHeads.length; i++){
+        for (let i = 0; i < this.TableHeads.length; i++) {
             domElementTable1RowHeadCell.push(domElementTable1RowHead.insertCell(i));
             domElementTable1RowHeadCell[i].classList.add('my-table-head-cell');
             domElementTable1RowHeadCell[i].classList.add("lg-col-4");
             domElementTable1RowHeadCell[i].id = `cell-head-${i}`;
             domElementTable1RowHeadCell[i].innerHTML = this.TableHeads[i];
         }
-        const domElementTable1RowData = domElementTable1.insertRow(1);
-        domElementTable1RowData.classList.add('my-table-data-row');
-        const domElementTable1RowDataCell = [];
-        for (let i=0; i< this.TableHeads.length; i++){
-            domElementTable1RowDataCell.push(domElementTable1RowData.insertCell(i));
-            domElementTable1RowDataCell[i].classList.add('my-table-data-cell');
-            domElementTable1RowDataCell[i].classList.add("lg-col-4");
-            domElementTable1RowDataCell[i].id = `cell-data-${i}`;
+        for (let j = 0; j < 2; j++) {
+            const domElementTable1RowData = domElementTable1.insertRow(1 + j);
+            domElementTable1RowData.classList.add('my-table-data-row');
+            domElementTable1RowData.id = `my-row-data-${j}`;
+            const domElementTable1RowDataCell = [];
+            for (let i = 0; i < this.TableHeads.length; i++) {
+                domElementTable1RowDataCell.push(domElementTable1RowData.insertCell(i));
+                domElementTable1RowDataCell[i].classList.add('my-table-data-cell');
+                domElementTable1RowDataCell[i].classList.add("lg-col-4");
+                domElementTable1RowDataCell[i].id = `cell-data-${j}-${i}`;
+                if (j === 0) {
+                    const domElement = document.createElement('ul');
+                    domElement.classList.add('my-ul-combo');
+                    domElement.id = `my-ul-combo-${i}`;
+                    domElement.addEventListener('click', UI.hiddenInfo);
+                    domElementTable1RowDataCell[i].appendChild(domElement);
+                }
+            }
         }
         domElementDiv1.appendChild(domElementTable1);
 
@@ -32,33 +42,60 @@ export default class UI{
         domElementDiv2.classList.add('my-table-div2');
         const domElementTable2 = document.createElement('table');
         domElementTable2.classList.add('my-table');
-        const domElementTable2RowRun = domElementTable2.insertRow(0);        
+        const domElementTable2RowRun = domElementTable2.insertRow(0);
         domElementTable2RowRun.classList.add('my-table-data-row');
         const domElementTable2RowRunCell = domElementTable2RowRun.insertCell(0);
         domElementTable2RowRunCell.classList.add('my-table-run-cell');
         domElementTable2RowRunCell.classList.add('lg-col-1');
         domElementTable2RowRunCell.id = `cell-run`;
-        domElementDiv2.appendChild(domElementTable2);            
-        
+        domElementDiv2.appendChild(domElementTable2);
+
         document.body.appendChild(domElementDiv1);
         document.body.appendChild(domElementDiv2);
     }
-    
-    static addHTMLInfo(idName, info = ''){
-        const domElement = document.getElementById(`cell-data-${this.TableHeads.indexOf(idName)}`);
-        domElement.innerHTML += `${info}<br>`;        
+
+    static hiddenInfo(event) {
+        if (event.target.tagName != 'SPAN') {
+            return;
+        }
+        const parent = document.getElementById(event.target.id.slice(14,-2));
+        for (let k=0; k<parent.childElementCount; k++){
+            parent.childNodes[k].hidden = !(parent.childNodes[k].id === event.target.id.slice(5));
+        }
     }
-    static addStatusInfo(info = ''){
+
+    static showCombo(descr, obj) {
+        const id = this.TableHeads.indexOf(descr);
+        const idCombo = `my-ul-combo-${id}`;
+        const idInfo = `cell-data-1-${id}`;
+        const domCombo = document.getElementById(idCombo);
+        const domInfo = document.getElementById(idInfo);
+        domCombo.innerHTML ='';
+        domInfo.innerHTML ='';
+        for (let i = 0; i < obj.length; i++) {
+            const strCombo = document.createElement('li');
+            const span = document.createElement('span');
+            span.innerHTML = obj[i].name;
+            span.id = `span-str-info-${idInfo}-${i}`;
+            strCombo.appendChild(span);
+            const strInfo = document.createElement('div');
+            strInfo.id = `str-info-${idInfo}-${i}`;
+            strInfo.innerHTML = obj[i].print();
+            strInfo.hidden = true;
+            domCombo.appendChild(strCombo);
+            domInfo.appendChild(strInfo);
+        }
+        const domFirst = document.getElementById(`str-info-${idInfo}-${0}`);
+        domFirst.hidden = false;
+    }
+
+    static addStatusInfo(info = '') {
         const domElement = document.getElementById(`cell-run`);
-        domElement.innerHTML += `${info}<br>`;        
-        domElement.scrollTo(top); 
+        domElement.innerHTML += `${info}<br>`;
+        domElement.scrollTo(top);
     }
-    static clearStatusInfo(){
+    static clearStatusInfo() {
         const domElement = document.getElementById(`cell-run`);
-        domElement.innerHTML = ``;        
-    }
-    static clearHTMLInfo(idName){
-        const domElement = document.getElementById(`cell-data-${this.TableHeads.indexOf(idName)}`);
-        domElement.innerHTML = ``;        
+        domElement.innerHTML = ``;
     }
 }

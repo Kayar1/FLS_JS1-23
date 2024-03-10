@@ -24,7 +24,8 @@ games.push(new Game({name : 'arcanoid', genre : Game.Genres.shuter, issue : 1980
 games.push(new Game({name : 'spacewar', genre : Game.Genres.spacelight, issue : 2000, complexity : 10}));
 games.push(new Game({name : 'formula1', genre : Game.Genres.racing, issue : 2005, complexity : 5}));
 games.push(new Game({name : 'warcraft', genre : Game.Genres.arcade, issue : 2010, complexity : 15}));
-UI.addHTMLInfo('Games', games.reduce( (res, el) => res += el.print(), ''));
+//UI.addHTMLInfo('Games', games.reduce( (res, el) => res += el.print(), ''));
+UI.showCombo('Games', games);
 
 const workers = [];
 workers.push(new Admin({name: 'Igor'}));
@@ -46,12 +47,13 @@ workers[2].addSkill({skill: Worker.Skills.senior, experience: 3});
 workers[2].performance += workers[2].performance;
 workers[2].salary += 2000;
 
-UI.addHTMLInfo('Workers', workers.reduce( (res, el) => res += el.print(), ''));
+UI.showCombo('Workers', workers);
 
 const projects = [];
 projects.push(new Project({game : games[2], tiker : tiker}));
 projects[0].addProg(workers[2]);
-UI.addHTMLInfo('Projects', projects[0].print());
+//UI.addHTMLInfo('Projects', projects[0].print());
+UI.showCombo('Projects', projects);
 
 const companies = [];
 companies.push(new Company({name : 'SoftServ', tiker : tiker}));
@@ -59,8 +61,9 @@ UI.addStatusInfo(companies[0].addGame({game : games[0]}));
 UI.addStatusInfo(companies[0].addProject(projects[0]));
 
 function printCompanies(){
-    UI.clearHTMLInfo('Companies');
-    UI.addHTMLInfo('Companies', companies.reduce( (res, el) => res += el.print(), ''));
+    UI.showCombo('Companies', companies);
+    //UI.clearHTMLInfo('Companies');
+    //UI.addHTMLInfo('Companies', companies.reduce( (res, el) => res += el.print(), ''));
 }
 
 printCompanies();

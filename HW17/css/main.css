@@ -43,3 +43,11 @@ body{
     vertical-align: bottom;
     overflow: auto;
   }
+
+  .my-ul-combo span:hover {
+    font-weight: bold;
+  }
+
+  .my-ul-combo span {
+    cursor: pointer;
+  }  
