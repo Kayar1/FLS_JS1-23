@@ -8,7 +8,7 @@ export default class Company{
     }
     addGame = (game) => {
         this.projects.push(new Project({game : game, tiker : this.tiker}));
-        return `In company ${this.name} added project = ${game.name}`; 
+        return `In company ${this.name} added project = ${this.projects[this.projects.length - 1].name}`; 
     }
     addProject = (project) => {
         this.projects.push(project);

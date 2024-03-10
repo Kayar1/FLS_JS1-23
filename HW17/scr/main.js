@@ -15,7 +15,8 @@ UI.generateScreen();
 
 const tiker = new Tiker(); 
 function stepDay(){
-    tiker.notify(tiker.events.NEXT_DAY);
+    const res = tiker.notify(tiker.events.TODO);
+    UI.addStatusInfo(`<b>Current day : ${tiker.notify(tiker.events.NEXT_DAY)} from run tiker!</b>`);    
 }
 
 const games = [];
@@ -54,8 +55,8 @@ UI.addHTMLInfo('Projects', projects[0].print());
 
 const companies = [];
 companies.push(new Company({name : 'SoftServ', tiker : tiker}));
-companies[0].addGame({game : games[0]});
-companies[0].addProject(projects[0]);
+UI.addStatusInfo(companies[0].addGame({game : games[0]}));
+UI.addStatusInfo(companies[0].addProject(projects[0]));
 
 function printCompanies(){
     UI.clearHTMLInfo('Companies');
@@ -66,19 +67,32 @@ printCompanies();
 
 UI.addStatusInfo(companies[0].startProjectById(0));
 
-function addProger(id1, id2){
-    UI.addStatusInfo(companies[0].addProgById({id : id1, worker : workers[id2]}));
+function addProger(id1, id2, id3){
+    UI.addStatusInfo(companies[id1].addProgById({id : id2, worker : workers[id3]}));
     printCompanies()
 }
-function start2(){
-    UI.addStatusInfo(companies[0].startProjectById(1));
+function start2(id1, id2){
+    UI.addStatusInfo(companies[id1].startProjectById(id2));
+}
+function addGames(id1, id2, id3, id4, id5, id6, id7, id8){
+    companies.push(new Company({name : 'EPAM', tiker : tiker}));
+    UI.addStatusInfo(companies[id1].addGame({game: games[id2]}));
+    const newProj = companies[id1].projects.length - 1;
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id3]}));
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id4]}));
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id5]}));
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id6]}));
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id7]}));
+    UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id8]}));
+    printCompanies();
+    UI.addStatusInfo(companies[id1].startProjectById(newProj));
+
 }
 
+tiker.subscribe(tiker.events.TODO, addProger, 0, [0, 0, 1]);
+tiker.subscribe(tiker.events.TODO, start2, 5, [0, 1]);
+tiker.subscribe(tiker.events.TODO, addProger, 4, [0, 1, 4]);
+tiker.subscribe(tiker.events.TODO, addProger, 7, [0, 1, 7]);
+tiker.subscribe(tiker.events.TODO, addGames, 25, [1, 1, 0, 2, 4, 6, 8, 10]);
 
-setInterval(stepDay, 2000);
-setTimeout(addProger, 5000, 0, 1);
-
-setTimeout(start2, 6000);
-
-setTimeout(addProger, 8000, 1, 4);
-setTimeout(addProger, 10000, 1, 7);
+tiker.id = setInterval(stepDay, 2000);

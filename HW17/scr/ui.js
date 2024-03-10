@@ -35,9 +35,8 @@ export default class UI{
         const domElementTable2RowRun = domElementTable2.insertRow(0);        
         domElementTable2RowRun.classList.add('my-table-data-row');
         const domElementTable2RowRunCell = domElementTable2RowRun.insertCell(0);
-        domElementTable2RowRunCell.classList.add('my-table-data-cell');
+        domElementTable2RowRunCell.classList.add('my-table-run-cell');
         domElementTable2RowRunCell.classList.add('lg-col-1');
-        //domElementTable2RowRunCell.colSpan = 4;
         domElementTable2RowRunCell.id = `cell-run`;
         domElementDiv2.appendChild(domElementTable2);            
         
@@ -52,6 +51,7 @@ export default class UI{
     static addStatusInfo(info = ''){
         const domElement = document.getElementById(`cell-run`);
         domElement.innerHTML += `${info}<br>`;        
+        domElement.scrollTo(top); 
     }
     static clearStatusInfo(){
         const domElement = document.getElementById(`cell-run`);

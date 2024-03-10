@@ -38,3 +38,8 @@ body{
     vertical-align: top;
     overflow: auto;
   }
+.my-table-run-cell {
+    border:1px solid black;
+    vertical-align: bottom;
+    overflow: auto;
+  }

@@ -13,11 +13,12 @@ export default class Project{
         this.workers = [];
         this.status = 0;
         this.dayOfWork = 0;
-        this.tiker = tiker;        
+        this.tiker = tiker; 
+        this.tikerID = 0;       
     }
 
     start = () => {
-        this.tiker.subscribe(this.tiker.events.NEXT_DAY, this.stepDay);
+        this.tikerID = this.tiker.subscribe(this.tiker.events.NEXT_DAY, this.stepDay, 0, []);
         return `<b>Staring ptoject ${this.name} with progress = ${this.status}</b>`
     }
 
@@ -41,7 +42,7 @@ export default class Project{
         if (this.status >= 100){
             this.status = 100;
             result += `<b>Project ${this.name} is ended ${this.status}%. Finished in ${this.dayOfWork} days</b>`;
-            this.tiker.unsubscribe(this.tiker.events.NEXT_DAY, this.stepDay);
+            this.tiker.unsubscribe(this.tiker.events.NEXT_DAY, this.tikerID);
         }else{
             result += `Project ${this.name} is in work = ${this.status}%`;
         }
