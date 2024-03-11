@@ -27,16 +27,10 @@ export default class UI {
                 domElementTable1RowDataCell[i].classList.add('my-table-data-cell');
                 domElementTable1RowDataCell[i].classList.add("lg-col-4");
                 domElementTable1RowDataCell[i].id = `cell-data-${j}-${i}`;
-                domElementTable1RowDataCell[i].columnNumber = i;
-                domElementTable1RowDataCell[i].rowNumber = -1;  
-                domElementTable1RowDataCell[i].infoParentId = -1;  
                 if (j === 0) {
                     const domElement = document.createElement('ul');
                     domElement.classList.add('my-ul-combo');
                     domElement.id = `my-ul-combo-${i}`;
-                    domElement.columnNumber = i;
-                    domElement.rowNumber = 1;
-                    domElement.nameParentFormatId = `cell-data-1-`;
                     domElement.addEventListener('click', UI.hiddenInfo);
                     domElementTable1RowDataCell[i].appendChild(domElement);
                 }
@@ -86,7 +80,7 @@ export default class UI {
             span.innerHTML = obj[i].name;
             span.id = `span-str-info-${idInfo}-${i}`;
             span.rowNumber = i;
-            span.nameParentFormatId = `cell-data-1-${id}`;
+            span.nameParentFormatId = idInfo;
             strCombo.appendChild(span);
             const strInfo = document.createElement('div');
             strInfo.id = `str-info-${idInfo}-${i}`;

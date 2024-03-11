@@ -3,14 +3,8 @@ import Game from "./game.js";
 
 export default class Project{
     constructor({game, tiker}){
-        if (game instanceof Game) {
-            this.name = game.name;
-            this.game = game;
-        }else{
-            console.log(222222);
-            this.name = Object.entries(game)[0][1].name;
-            this.game = Object.entries(game)[0][1];
-        }        
+        this.name = game.name;
+        this.game = game;
         this.workers = [];
         this.status = 0;
         this.dayOfWork = 0;
