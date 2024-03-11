@@ -27,10 +27,16 @@ export default class UI {
                 domElementTable1RowDataCell[i].classList.add('my-table-data-cell');
                 domElementTable1RowDataCell[i].classList.add("lg-col-4");
                 domElementTable1RowDataCell[i].id = `cell-data-${j}-${i}`;
+                domElementTable1RowDataCell[i].columnNumber = i;
+                domElementTable1RowDataCell[i].rowNumber = -1;  
+                domElementTable1RowDataCell[i].infoParentId = -1;  
                 if (j === 0) {
                     const domElement = document.createElement('ul');
                     domElement.classList.add('my-ul-combo');
                     domElement.id = `my-ul-combo-${i}`;
+                    domElement.columnNumber = i;
+                    domElement.rowNumber = 1;
+                    domElement.nameParentFormatId = `cell-data-1-`;
                     domElement.addEventListener('click', UI.hiddenInfo);
                     domElementTable1RowDataCell[i].appendChild(domElement);
                 }
@@ -58,9 +64,11 @@ export default class UI {
         if (event.target.tagName != 'SPAN') {
             return;
         }
-        const parent = document.getElementById(event.target.id.slice(14,event.target.id.lastIndexOf('-')));
+        console.log(event.target.nameParentFormatId);
+        const parent = document.getElementById(event.target.nameParentFormatId);
+
         for (let k=0; k<parent.childElementCount; k++){
-            parent.childNodes[k].hidden = !(parent.childNodes[k].id === event.target.id.slice(5));
+            parent.childNodes[k].hidden = !(parent.childNodes[k].rowNumber === event.target.rowNumber);
         }
     }
 
@@ -77,10 +85,13 @@ export default class UI {
             const span = document.createElement('span');
             span.innerHTML = obj[i].name;
             span.id = `span-str-info-${idInfo}-${i}`;
+            span.rowNumber = i;
+            span.nameParentFormatId = `cell-data-1-${id}`;
             strCombo.appendChild(span);
             const strInfo = document.createElement('div');
             strInfo.id = `str-info-${idInfo}-${i}`;
             strInfo.innerHTML = obj[i].print();
+            strInfo.rowNumber = i;
             strInfo.hidden = true;
             domCombo.appendChild(strCombo);
             domInfo.appendChild(strInfo);
