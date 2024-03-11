@@ -58,7 +58,7 @@ export default class UI {
         if (event.target.tagName != 'SPAN') {
             return;
         }
-        const parent = document.getElementById(event.target.id.slice(14,-2));
+        const parent = document.getElementById(event.target.id.slice(14,event.target.id.lastIndexOf('-')));
         for (let k=0; k<parent.childElementCount; k++){
             parent.childNodes[k].hidden = !(parent.childNodes[k].id === event.target.id.slice(5));
         }

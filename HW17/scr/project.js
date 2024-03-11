@@ -7,6 +7,7 @@ export default class Project{
             this.name = game.name;
             this.game = game;
         }else{
+            console.log(222222);
             this.name = Object.entries(game)[0][1].name;
             this.game = Object.entries(game)[0][1];
         }        

@@ -17,6 +17,7 @@ const tiker = new Tiker();
 function stepDay(){
     const res = tiker.notify(tiker.events.TODO);
     UI.addStatusInfo(`<b>Current day : ${tiker.notify(tiker.events.NEXT_DAY)} from run tiker!</b>`);    
+    printProjects();
 }
 
 const games = [];
@@ -24,7 +25,6 @@ games.push(new Game({name : 'arcanoid', genre : Game.Genres.shuter, issue : 1980
 games.push(new Game({name : 'spacewar', genre : Game.Genres.spacelight, issue : 2000, complexity : 10}));
 games.push(new Game({name : 'formula1', genre : Game.Genres.racing, issue : 2005, complexity : 5}));
 games.push(new Game({name : 'warcraft', genre : Game.Genres.arcade, issue : 2010, complexity : 15}));
-//UI.addHTMLInfo('Games', games.reduce( (res, el) => res += el.print(), ''));
 UI.showCombo('Games', games);
 
 const workers = [];
@@ -52,18 +52,21 @@ UI.showCombo('Workers', workers);
 const projects = [];
 projects.push(new Project({game : games[2], tiker : tiker}));
 projects[0].addProg(workers[2]);
-//UI.addHTMLInfo('Projects', projects[0].print());
-UI.showCombo('Projects', projects);
+printProjects();
 
 const companies = [];
 companies.push(new Company({name : 'SoftServ', tiker : tiker}));
 UI.addStatusInfo(companies[0].addGame({game : games[0]}));
+projects.push(companies[0].projects[companies[0].projects.length - 1]);
 UI.addStatusInfo(companies[0].addProject(projects[0]));
+
+printProjects();
 
 function printCompanies(){
     UI.showCombo('Companies', companies);
-    //UI.clearHTMLInfo('Companies');
-    //UI.addHTMLInfo('Companies', companies.reduce( (res, el) => res += el.print(), ''));
+}
+function printProjects(){
+    UI.showCombo('Projects', projects);
 }
 
 printCompanies();
@@ -81,12 +84,14 @@ function addGames(id1, id2, id3, id4, id5, id6, id7, id8){
     companies.push(new Company({name : 'EPAM', tiker : tiker}));
     UI.addStatusInfo(companies[id1].addGame({game: games[id2]}));
     const newProj = companies[id1].projects.length - 1;
+    projects.push(companies[1].projects[newProj]);
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id3]}));
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id4]}));
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id5]}));
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id6]}));
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id7]}));
     UI.addStatusInfo(companies[id1].addProgById({id : newProj, worker : workers[id8]}));
+    printProjects();
     printCompanies();
     UI.addStatusInfo(companies[id1].startProjectById(newProj));
 
