@@ -1,0 +1,56 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: lightgray;
+    overflow: auto;
+}
+
+.my-div-1 {
+  height: 50vh;
+  overflow: auto;
+}
+.my-div-2 {
+  height: calc(100vh - 50vh);
+  overflow: auto;
+}
+.a-input-login-email{
+    margin: 5px;
+    padding: 0;
+    height: 3em;
+    color: green;
+}
+.input-login-email{
+  margin: 5px;
+  padding: 0;
+  height: 3em;
+  text-align: center;
+}
+.a-input-login-pass{
+    margin: 5px;
+    padding: 0;
+    height: 3em;
+    color:blueviolet;
+}
+.input-login-pass{
+  margin: 5px;
+  padding: 0;
+  height: 3em;
+  text-align: center;
+}
+.input-login-check{
+    margin: 0;
+    padding: 0;
+    height: 3em;
+    width: 28em;
+    color: blue;
+    background-color: lightyellow;
+    font-weight: bold;
+    font-size: 20px;
+}
+.info-error{
+  margin: 0;
+  padding: 0;
+  height: 15em;
+  background-color: lightpink;
+}
