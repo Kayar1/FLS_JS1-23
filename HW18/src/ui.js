@@ -1,4 +1,5 @@
 export default class UI{
+    static LoginInfo = 'input-login-info';
     static LoginInput = 'input-login-email';
     static PassInput = 'input-login-pass';
     static CheckButton = 'input-login-check';
@@ -12,6 +13,11 @@ export default class UI{
         const docElementDiv1 = document.createElement('div');
         docElementDiv1.classList.add(this.myDiv1);
         
+        const docElementInfo = document.createElement('a');
+        docElementInfo.classList.add(this.LoginInfo);
+        docElementInfo.id = 'a-'+this.LoginInfo;
+        docElementInfo.text = 'Login email must contents one "@". password length must be >= 6, have one A-Z, one 0-9, one symbols, other are a-z';
+
         const docElementLoginA = document.createElement('a');
         docElementLoginA.classList.add('a-'+this.LoginInput);
         docElementLoginA.id = 'a-'+this.LoginInput;
@@ -42,13 +48,16 @@ export default class UI{
         docElementError.classList.add(this.ErrorInfo);
         docElementError.id = this.ErrorInfo;
         
-        const docElementLine = document.createElement('br');    
+        const docElementLine0 = document.createElement('br');    
+        const docElementLine1 = document.createElement('br');    
 
+        docElementDiv1.appendChild(docElementInfo);
+        docElementDiv1.appendChild(docElementLine0);
         docElementDiv1.appendChild(docElementLoginA);
         docElementDiv1.appendChild(docElementLogin);
         docElementDiv1.appendChild(docElementPassA);
         docElementDiv1.appendChild(docElementPass);
-        docElementDiv1.appendChild(docElementLine);
+        docElementDiv1.appendChild(docElementLine1);
         docElementDiv1.appendChild(docElementCheck);
         docElementDiv1.appendChild(docElementError);
         document.body.appendChild(docElementDiv1);

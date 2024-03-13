@@ -1,7 +1,7 @@
 import UI from "./ui.js";
 
 const maxPassLen = 6;
-const minCaseCount = [1, 3, 1, 1]; 
+const minCaseCount = [1, 1, 1, 1]; 
 // A-Z
 // a-z
 // 0-9
@@ -10,25 +10,25 @@ const minCaseCount = [1, 3, 1, 1];
 //[ - `
 //{ - ~
 
-function validateForm(loginEmail = '', password = ''){
+function validateForm(info = {loginEmail: '', password: ''}){
     let result = '';
     //check email
-    if (loginEmail.indexOf('@') === 0) result += `There are not '@' in email! <br>`;
-    if (loginEmail.indexOf('@') !== loginEmail.lastIndexOf('@')) result += `Too many '@' in email! <br>`;
-    if (loginEmail.substring(loginEmail.indexOf('@') + 1).indexOf('.') === 0)  result += `email is not correct! <br>`;
+    if (info.loginEmail.indexOf('@') === 0) result += `There are not '@' in email! <br>`;
+    if (info.loginEmail.indexOf('@') !== loginEmail.lastIndexOf('@')) result += `Too many '@' in email! <br>`;
+    if (info.loginEmail.substring(info.loginEmail.indexOf('@') + 1).indexOf('.') === 0)  result += `email is not correct! <br>`;
 
     //password
 
-    if (password.length <= maxPassLen) result += `Password are too short (min ${maxPassLen} symbols)! <br>`;
+    if (info.password.length <= maxPassLen) result += `Password are too short (min ${maxPassLen} symbols)! <br>`;
     let caseSymbols = [0, 0, 0, 0];
-    for (let i=0; i<password.length; i++){
-        if (65 <= password.charCodeAt(i) && password.charCodeAt(i) <= 90) caseSymbols[0]++;
-        if (97 <= password.charCodeAt(i) && password.charCodeAt(i) <= 122) caseSymbols[1]++;
-        if (48 <= password.charCodeAt(i) && password.charCodeAt(i) <= 57) caseSymbols[2]++;
-        if (33 <= password.charCodeAt(i) && password.charCodeAt(i) <= 47) caseSymbols[3]++;
-        if (58 <= password.charCodeAt(i) && password.charCodeAt(i) <= 64) caseSymbols[3]++;
-        if (91 <= password.charCodeAt(i) && password.charCodeAt(i) <= 96) caseSymbols[3]++;
-        if (123 <= password.charCodeAt(i) && password.charCodeAt(i) <= 126) caseSymbols[3]++;
+    for (let i=0; i<info.password.length; i++){
+        if (65 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 90) caseSymbols[0]++;
+        if (97 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 122) caseSymbols[1]++;
+        if (48 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 57) caseSymbols[2]++;
+        if (33 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 47) caseSymbols[3]++;
+        if (58 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 64) caseSymbols[3]++;
+        if (91 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 96) caseSymbols[3]++;
+        if (123 <= info.password.charCodeAt(i) && info.password.charCodeAt(i) <= 126) caseSymbols[3]++;
     }
     
     const checkResult = caseSymbols.reduce((a, b, i) => a += b >= minCaseCount[i] ? 1 : 0, 0);
