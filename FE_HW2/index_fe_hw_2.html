@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div id="top"></div>
+  <h1>HomeWork 2</h1>
+  <header>
+    <nav>
+      <a href="./index_fe_hw_2.html">home</a>
+      <a href="https://levelup.ua/" target="_blank">level_up</a>
+    </nav>
+  </header>
+  <form method="get">
+    <table border="1">
+      <caption style="font-size: xx-large">
+        Table for all test
+      </caption>
+      <thead>
+        <tr>
+          <td>Base</td>
+          <td>Lists</td>
+          <td>Other</td>
+          <td>Text</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <article style="background-color: green; color: yellow; font-family: 'Courier New';">
+              Yellow on green
+            </article>
+            <article style="background-color: blue; color: yellow; font-family: Impact">
+              Yellow on Blue
+            </article>
+            <article style="background-color: red; color: green; font-family: 'Franklin Gothic Medium';">
+              Green on Red
+            </article>
+          </td>
+          <td>
+            <fieldset>
+              <legend>Checkers:</legend>
+              <input id="passport" name="passport" type="checkbox" checked />
+              <label for="passport">passport</label>
+              <input id="myid" name="id" type="checkbox" />
+              <label for="myid">ID</label>
+              <input id="driverid" name="driverid" type="checkbox" />
+              <label for="driverid">driverID</label>
+              <input id="f-passport" name="f-passport" type="checkbox" />
+              <label for="f-passport">foreing passport</label>
+            </fieldset>
+          </td>
+          <td>
+            <label for="school">Choise a level</label>
+            <select name="school" id="school">
+              <option value="" disabled selected>
+                --Please choise an option--
+              </option>
+              <optgroup label="Primary">
+                <option value="kindergarten">Kindergarten</option>
+                <option value="primaryschool">Primary School</option>
+              </optgroup>
+              <optgroup label="Secondary">
+                <option value="secondaryschool">Secondary School</option>
+                <option value="colegue">Colegue</option>
+              </optgroup>
+              <optgroup label="High">
+                <option value="institute">Institute</option>
+                <option value="university">University</option>
+                <option value="academy">Academy</option>
+              </optgroup>
+            </select>
+          </td>
+          <td rowspan="4">
+            <p>
+              <b>JavaScript</b> (англ. /ˈdʒɑːvəskrɪpt/; аббр. JS) —
+              мультипарадигменный язык программирования. Поддерживает
+              объектно-ориентированный, императивный и функциональный стили.
+              Является реализацией спецификации <b>ECMAScript</b> (стандарт
+              ECMA-262[2]). <b>JavaScript</b> обычно используется как встраиваемый
+              язык для программного доступа к объектам приложений. Наиболее
+              широкое применение находит в браузерах как язык сценариев для
+              придания интерактивности веб-страницам[8].
+            </p>
+            <p>
+              Основные архитектурные черты: динамическая типизация, слабая
+              типизация, автоматическое управление памятью, прототипное
+              программирование, функции как объекты первого класса. На
+              JavaScript оказали влияние многие языки, при разработке была
+              цель сделать язык похожим на Java. Языком <b>JavaScript</b> не владеет
+              какая-либо организация или компания, что отличает его от ряда
+              языков программирования, используемых в веб-разработке[~ 1][9].
+              Название <b>«JavaScript»</b> является зарегистрированным товарным
+              знаком корпорации <b>Oracle</b> в США[10].
+            </p>
+            <p>
+              В 1992 году компания Nombas (впоследствии приобретённая
+              <b>Openwave[en]</b>) начала разработку встраиваемого скриптового языка
+              Cmm (Си-минус-минус), который, по замыслу разработчиков, должен
+              был стать достаточно мощным, чтобы заменить макросы, сохраняя
+              при этом схожесть с Си, чтобы разработчикам не составляло труда
+              изучить его[11]. Главным отличием от Си была работа с памятью. В
+              новом языке всё управление памятью осуществлялось автоматически:
+              не было необходимости создавать буфера, объявлять переменные,
+              осуществлять преобразование типов. В остальном языки сильно
+              походили друг на друга: в частности, Cmm поддерживал стандартные
+              функции и операторы Си[12]. Cmm был переименован в ScriptEase,
+              поскольку исходное название звучало слишком негативно, а
+              упоминание в нём Си «отпугивало» людей[11][13]. На основе этого
+              языка был создан проприетарный продукт CEnvi. В конце ноября
+              1995 года Nombas разработала версию CEnvi, внедряемую в
+              веб-страницы. Страницы, которые можно было изменять с помощью
+              скриптового языка, получили название Espresso Pages — они
+              демонстрировали использование скриптового языка для создания
+              игры, проверки пользовательского ввода в формы и создания
+              анимации. Espresso Pages позиционировались как демоверсия,
+              призванная помочь представить, что случится, если в браузер
+              будет внедрён язык Cmm. Работали они только в 16-битовом
+              Netscape Navigator под управлением Windows[14].
+            </p>
+            <p>
+              Самая первая реализация <b>JavaScript</b> была создана Бренданом Эйхом
+              (англ. Brendan Eich) в компании <b>Netscape</b>, и с тех пор
+              обновляется, чтобы соответствовать ECMA-262 Edition 5 и более
+              поздним версиям. Этот движок называется <b>SpiderMonkey</b> и
+              реализован на языке <b>C/C++</b>. Движок Rhino создан Норрисом Бойдом
+              (англ. Norris Boyd) и реализован на языке <b>Java</b>. Как и
+              SpiderMonkey, Rhino соответствует ECMA-262 Edition 5.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="lightyellow">
+            <ol type="a">
+              <li>first</li>
+              <li>second</li>
+              <li>third</li>
+              <li>fours</li>
+            </ol>
+          </td>
+          <td>
+            <fieldset>
+              <legend>Time:</legend>
+              morning:
+              <input type="radio" name="time" value="morning" />
+              day:
+              <input type="radio" name="time" value="day" checked />
+              evening:
+              <input type="radio" name="time" value="evening" />
+              night:
+              <input type="radio" name="time" value="night" />
+            </fieldset>
+          </td>
+          <td>
+            <label for="cource" style="vertical-align: top">Choise a Cources</label>
+            <select name="cource" id="cource" multiple>
+              <optgroup label="General">
+                <option value="bakalavr">Bakalavr</option>
+                <option value="magister">Magister</option>
+                <option value="professor">Professor</option>
+                <option value="doctor">Doctor</option>
+              </optgroup>
+              <optgroup label="Individual WEB">
+                <option value="frontend">Front-End</option>
+                <option value="backend">Back-End</option>
+                <option value="js">JS</option>
+                <option value="fullstack">Full-Stack</option>
+              </optgroup>
+              <optgroup label="Indisidual DEV">
+                <option value="csharpdotnet">C#.NET</option>
+                <option value="piton">Piton</option>
+                <option value="cpp">C++</option>
+              </optgroup>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="lightcyan">
+            <ul>
+              <li>first</li>
+              <li>second</li>
+              <li>third</li>
+              <li>fours</li>
+            </ul>
+          </td>
+          <td>
+            <fieldset>
+              <label style="font-weight: bold" for="username">Login name</label>
+              <input type="text" name="username" id="username" placeholder="Login Info" required value="admin" />
+              <hr />
+              <label style="font-weight: bold" for="userpass">Password</label>
+              <input type="password" name="userpass" id="userpass" placeholder="Login Info" value="admin" required />
+            </fieldset>
+          </td>
+          <td>
+            <textarea name="sometext" id="sometext" cols="30" rows="10" placeholder="some text..."></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="email">Enter email</label>
+            <input type="email" name="email" id="email" required />
+            <hr>
+            <label for="tel">Telephone</label>
+            <input type="tel" name="tel" id="tel" pattern="+[0-9]{3}([0-9]{2})-[0-9]{3}-[0-9]{2}-[0-9]{2}" required />
+          </td>
+          <td colspan="2">
+            <label for="f-name">File</label>
+            <input type="file" name="f-name" id="f-name" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="flag">Choise a salary you prefer...</label>
+            <br>
+            <input type="range" min="0" max="10000" step="500" name="flags" id="flag" list="flags" value="1000">
+            <datalist id="flags">
+              <option value="0"></option>
+              <option value="1000"></option>
+              <option value="2500"></option>
+              <option value="5000"></option>
+              <option value="7000"></option>
+              <option value="8500"></option>
+              <option value="10000"></option>
+            </datalist>
+          </td>
+          <td colspan="2">
+            <fieldset>
+              <legend>Your Country:</legend>
+              <input type="radio" name="country" id="flag-1" value="ukraine" style="display: none;" checked />
+              <label for="flag-1"><img src="./4x3/ua.svg" alt="slide 1" width="75" height="60"
+                  aria-hidden="true" /></label>
+              <input type="radio" name="time" id="flag-2" value="france" style="display: none;" />
+              <label for="flag-1"><img src="./4x3/fr.svg" alt="slide 2" width="75" height="60"
+                  aria-hidden="true" /></label>
+              <input type="radio" name="time" id="flag-3" value="usa" style="display: none;" />
+              <label for="flag-1"><img src="./4x3/us.svg" alt="slide 3" width="75" height="60"
+                  aria-hidden="true" /></label>
+              <input type="radio" name="time" id="flag-4" value="georgia" style="display: none;" />
+              <label for="flag-1"><img src="./4x3/ge.svg" alt="slide 4" width="75" height="60"
+                  aria-hidden="true" /></label>
+              <input type="radio" name="time" id="flag-5" value="germany" style="display: none;" />
+              <label for="flag-1"><img src="./4x3/de.svg" alt="slide 5" width="75" height="60"
+                  aria-hidden="true" /></label>
+            </fieldset>
+          </td>
+          <td bgcolor="magenta" style="text-align: center;">
+            <input type="submit" value="Submit" style="font-weight: bold; font-size: 80px;" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <footer>
+    <p><a href="#top">Go UP</a> _________2024 &reg; Lozhnikov &trade; Dnipro <img src="./1x1/ua.svg" alt="UA" width="20"
+        height="20">
+    <p>
+  </footer>
+</body>
+
+</html>
